@@ -1,14 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.scss";
 import App from "./components/App";
 import reportWebVitals from "./reportWebVitals";
-import { AuthProvider } from "./config/auth";
+import { AuthProvider } from "./services/firebase/auth";
+import { BrowserRouter as Router } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <AuthProvider>
-    <App />
+    <Router>
+      <App />
+    </Router>
   </AuthProvider>
 );
 
