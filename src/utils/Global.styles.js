@@ -14,18 +14,21 @@ const GlobalStyles = createGlobalStyle`
   }
   
   body {
+    margin: 0;
     background-color: ${color.darkblue};
     color: ${color.white};
     height: 100vh;
     font-family: "Outfit", sans-serif;
-    font-weight: ${weight.medium};
+    font-weight: ${weight.light};
   }
 
   h1 {
     font-size: 2rem;
+    font-weight: ${weight.light};
+    text-transform: capitalize;
   }
   
-  h1,h2,h3,h4,h5 {
+ h2,h3,h4,h5 {
     font-weight: ${weight.medium};
   }
   
