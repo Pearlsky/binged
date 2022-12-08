@@ -1,12 +1,7 @@
-import AuthForm from "../../components/AuthForm/AuthForm";
-import StyledLogin from "./Login.styles";
+import AuthPage from "../../components/AuthPage/AuthPage";
 
 const Login = () => {
-  return (
-    <StyledLogin>
-      <AuthForm heading="login" />
-    </StyledLogin>
-  );
+  return <AuthPage heading="login" />;
 };
 
 export default Login;
