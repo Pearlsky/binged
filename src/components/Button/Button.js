@@ -10,7 +10,7 @@ const OutlinedButton = ({ text = "", icon, type = "" }) => {
     <StyledOutlinedButton type={type}>
       <Icon icon={icon} />
       {text}
-    </StyledOutlinedButton>
+    </StyledOutlinedButton> 
   );
 };
 
