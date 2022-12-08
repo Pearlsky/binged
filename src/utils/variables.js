@@ -4,7 +4,7 @@ export const colors = {
   grayishblue: `rgb(90, 105, 143)`,
   semidarkblue: `rgb(22, 29, 47)`,
   white: `rgb(255, 255, 255)`,
-  purewhite: `rgb(255, 255, 255)`,
+  gray: `rgb(151, 151, 151)`,
 };
 
 export const weights = {
