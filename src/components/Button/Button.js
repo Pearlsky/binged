@@ -1,7 +1,17 @@
-import StyledButton from "./Button.styles";
+import Icon from "../Icon/Icon";
+import { StyledButton, StyledOutlinedButton } from "./Button.styles";
 
-const Button = ({ text, type = "" }) => {
+const TextButton = ({ text, type = "" }) => {
   return <StyledButton type={type}>{text}</StyledButton>;
 };
 
-export default Button;
+const OutlinedButton = ({ text = "", icon, type = "" }) => {
+  return (
+    <StyledOutlinedButton type={type}>
+      <Icon icon={icon} />
+      {text}
+    </StyledOutlinedButton>
+  );
+};
+
+export { TextButton, OutlinedButton };
