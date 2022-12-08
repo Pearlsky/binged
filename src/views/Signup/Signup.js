@@ -1,8 +1,10 @@
-import AuthForm from "../../components/AuthForm/AuthForm";
-import StyledSignup from "./Signup.styles";
+import AuthPage from "../../components/AuthPage/AuthPage";
+
 
 const Signup = () => {
-    return <StyledSignup><AuthForm heading="sign up"/></StyledSignup>
+  return (
+    <AuthPage heading="signup"/>
+  );
 };
 
 export default Signup;
