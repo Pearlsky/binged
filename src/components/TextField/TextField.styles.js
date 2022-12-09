@@ -10,12 +10,18 @@ const StyledTextField = styled.label`
     border: none;
     border-bottom: solid 1px ${color.grayishblue};
     background-color: ${color.semidarkblue};
+    color: ${color.white};
     padding: 2em 1em 1.4em;
     width: inherit;
     font-family: inherit;
     font-weight: inherit;
+    outline: none;
 
-    &::placeholder {
+    :focus {
+      border-color: ${color.white};
+    }
+
+    ::placeholder {
       color: ${color.gray};
     }
   }
