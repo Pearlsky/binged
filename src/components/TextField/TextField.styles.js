@@ -12,7 +12,7 @@ const StyledTextField = styled.label`
     content: "Can't be empty";
     color: ${color.redprimary};
     position: absolute;
-    top: 2em;
+    top: 1.7em;
     right: 1em;
   }
 
