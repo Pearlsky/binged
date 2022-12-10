@@ -24,7 +24,7 @@ const StyledAuthForm = styled.form`
   p {
     text-align: center;
     margin: none;
-  }
+  } 
 `;
 
 export default StyledAuthForm;
