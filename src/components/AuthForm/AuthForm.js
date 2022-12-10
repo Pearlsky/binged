@@ -13,7 +13,7 @@ const AuthForm = ({ heading }) => {
     <StyledAuthForm>
       <h1>{heading}</h1>
       <TextField type="email" placeholder="Email address" />
-      <TextField type="password" placeholder="Password" />
+      <TextField type="password" placeholder="Password" error/>
       {heading === "login" ? (
         ""
       ) : (
