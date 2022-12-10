@@ -1,9 +1,9 @@
 import StyledTextField from "./TextField.styles";
 
-const TextField = ({ placeholder, type = "text" }) => {
+const TextField = ({ placeholder, type = "text", error}) => {
   return (
-    <StyledTextField>
-      <input type={type} placeholder={placeholder} />
+    <StyledTextField error={error}>
+      <input type={type} placeholder={placeholder} error={error} />
     </StyledTextField>
   );
 };
