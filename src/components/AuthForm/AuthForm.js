@@ -7,17 +7,49 @@ import TextField from "../TextField/TextField";
 import StyledAuthForm from "./AuthForm.styles";
 
 import googleIcon from "../../assets/Google.svg";
+import { useState } from "react";
 
 const AuthForm = ({ heading }) => {
+  const [emailErr, setEmailErr] = useState(false);
+  const [passErr, setPassErr] = useState(false);
+  const [repeatPassErr, setRepeatErr] = useState(false);
+
+  const isValidSignUp = !(emailErr && passErr && repeatPassErr);
+  const isValidLogin = !(emailErr && passErr);
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    if (heading === "login") {
+      isValidLogin ? console.log("worked") : console.log("error");
+    } else {
+      isValidSignUp ? console.log("worked") : console.log("error");
+    }
+  };
+
   return (
-    <StyledAuthForm>
+    <StyledAuthForm onSubmit={submitHandler}>
       <h1>{heading}</h1>
-      <TextField type="email" placeholder="Email address" />
-      <TextField type="password" placeholder="Password" error/>
+      <TextField
+        type="email"
+        placeholder="Email address"
+        error={emailErr}
+        setError={setEmailErr}
+      />
+      <TextField
+        type="password"
+        placeholder="Password"
+        error={passErr}
+        setError={setPassErr}
+      />
       {heading === "login" ? (
         ""
       ) : (
-        <TextField type="password" placeholder="Repeat Password" />
+        <TextField
+          type="password"
+          placeholder="Repeat Password"
+          error={repeatPassErr}
+          setError={setRepeatErr}
+        />
       )}
       <TextButton
         type="submit"
