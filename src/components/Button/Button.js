@@ -5,9 +5,9 @@ const TextButton = ({ text, type = "", onClick}) => {
   return <StyledButton type={type} onClick={onClick}>{text}</StyledButton>;
 };
 
-const OutlinedButton = ({ text = "", icon, type = "" }) => {
+const OutlinedButton = ({ text = "", icon, type = "", onClick }) => {
   return (
-    <StyledOutlinedButton type={type} >
+    <StyledOutlinedButton type={type} onClick={onClick}>
       <Icon icon={icon} />
       {text}
     </StyledOutlinedButton> 
