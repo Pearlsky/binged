@@ -1,9 +1,6 @@
-import { useState } from "react";
 import StyledTextField from "./TextField.styles";
 
-const TextField = ({ placeholder, type = "text", error, setError }) => {
-  const [input, setInput] = useState("");
-  const inputError = input === "";
+const TextField = ({ placeholder, type = "text", error, setInput}) => {
 
   return (
     <StyledTextField error={error}>
@@ -12,7 +9,6 @@ const TextField = ({ placeholder, type = "text", error, setError }) => {
         placeholder={placeholder}
         onChange={(e) => {
           setInput(e.target.value);
-          setError(inputError);
         }}
       />
     </StyledTextField>
