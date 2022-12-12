@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
+
 
 import * as ROUTES from "../../constants/routes";
 
@@ -7,49 +9,35 @@ import TextField from "../TextField/TextField";
 import StyledAuthForm from "./AuthForm.styles";
 
 import googleIcon from "../../assets/Google.svg";
-import { useState } from "react";
+
 
 const AuthForm = ({ heading }) => {
-  const [emailErr, setEmailErr] = useState(false);
-  const [passErr, setPassErr] = useState(false);
-  const [repeatPassErr, setRepeatErr] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [repeatPassword, setRepeatPassword] = useState("");
 
-  const isValidSignUp = !(emailErr && passErr && repeatPassErr);
-  const isValidLogin = !(emailErr && passErr);
+  const [emailErr, setEmailErr] = useState(false);
+  const [passwordErr, setPasswordErr] = useState(false);
+  const [repeatPasswordErr, setRepeatPasswordErr] = useState(false);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (heading === "login") {
-      isValidLogin ? console.log("worked") : console.log("error");
-    } else {
-      isValidSignUp ? console.log("worked") : console.log("error");
-    }
-  };
+
+    (!email) ? setEmailErr(true) : console.log("success");
+    (!password) ? setPasswordErr(true) : console.log("sucess")
+    (!repeatPassword) ? setRepeatPasswordErr(true): console.log("success");
+  }
+
 
   return (
     <StyledAuthForm onSubmit={submitHandler}>
       <h1>{heading}</h1>
-      <TextField
-        type="email"
-        placeholder="Email address"
-        error={emailErr}
-        setError={setEmailErr}
-      />
-      <TextField
-        type="password"
-        placeholder="Password"
-        error={passErr}
-        setError={setPassErr}
-      />
+      <TextField type="email" placeholder="Email address" error={emailErr} setInput={setEmail}/>
+      <TextField type="password" placeholder="Password" error={passwordErr} setInput={setPassword}/>
       {heading === "login" ? (
         ""
       ) : (
-        <TextField
-          type="password"
-          placeholder="Repeat Password"
-          error={repeatPassErr}
-          setError={setRepeatErr}
-        />
+        <TextField type="password" placeholder="Repeat Password" error={repeatPasswordErr} setInput={setRepeatPassword}/>
       )}
       <TextButton
         type="submit"
