@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-
 import * as ROUTES from "../../constants/routes";
 
 import { TextButton, OutlinedButton } from "../Button/Button";
@@ -9,7 +8,6 @@ import TextField from "../TextField/TextField";
 import StyledAuthForm from "./AuthForm.styles";
 
 import googleIcon from "../../assets/Google.svg";
-
 
 const AuthForm = ({ heading }) => {
   const [email, setEmail] = useState("");
@@ -22,22 +20,33 @@ const AuthForm = ({ heading }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-
-    (!email) ? setEmailErr(true) : console.log("success");
-    (!password) ? setPasswordErr(true) : console.log("sucess")
-    (!repeatPassword) ? setRepeatPasswordErr(true): console.log("success");
-  }
-
+    !email ? setEmailErr(true) : console.log("success");
+    !password ? setPasswordErr(true) : console.log("sucess");
+    !repeatPassword ? setRepeatPasswordErr(true) : console.log("success");
+  };
 
   return (
     <StyledAuthForm onSubmit={submitHandler}>
       <h1>{heading}</h1>
-      <TextField type="email" placeholder="Email address" error={emailErr} setInput={setEmail}/>
-      <TextField type="password" placeholder="Password" error={passwordErr} setInput={setPassword}/>
-      {heading === "login" ? (
-        ""
-      ) : (
-        <TextField type="password" placeholder="Repeat Password" error={repeatPasswordErr} setInput={setRepeatPassword}/>
+      <TextField
+        type="email"
+        placeholder="Email address"
+        error={emailErr}
+        setInput={setEmail}
+      />
+      <TextField
+        type="password"
+        placeholder="Password"
+        error={passwordErr}
+        setInput={setPassword}
+      />
+      {heading === "signup" && (
+        <TextField
+          type="password"
+          placeholder="Repeat Password"
+          error={repeatPasswordErr}
+          setInput={setRepeatPassword}
+        />
       )}
       <TextButton
         type="submit"
