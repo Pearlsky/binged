@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import * as ROUTES from "../../constants/routes";
 
@@ -8,6 +8,11 @@ import TextField from "../TextField/TextField";
 import StyledAuthForm from "./AuthForm.styles";
 
 import googleIcon from "../../assets/Google.svg";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { AuthContext } from "../../services/firebase/auth";
 
 const AuthForm = ({ heading }) => {
   const [email, setEmail] = useState("");
@@ -18,11 +23,30 @@ const AuthForm = ({ heading }) => {
   const [passwordErr, setPasswordErr] = useState(false);
   const [repeatPasswordErr, setRepeatPasswordErr] = useState(false);
 
-  const submitHandler = (e) => {
+  const isSignUpValid =
+    email !== "" && password !== "" && repeatPassword !== "";
+  const isLoginValid = email !== "" && password !== "";
+
+  const { auth, setUser } = useContext(AuthContext);
+
+  const submitHandler = async (e) => {
     e.preventDefault();
-    !email ? setEmailErr(true) : console.log("success");
-    !password ? setPasswordErr(true) : console.log("sucess");
-    !repeatPassword ? setRepeatPasswordErr(true) : console.log("success");
+    !email ? setEmailErr(true) : setEmailErr(false);
+    !password ? setPasswordErr(true) : setPasswordErr(false);
+    !repeatPassword ? setRepeatPasswordErr(true) : setRepeatPasswordErr(false);
+
+    if (heading === "login" && isLoginValid) {
+      const newUser = await signInWithEmailAndPassword(auth, email, password);
+      setUser(newUser);
+    }
+    if (heading === "signup" && isSignUpValid) {
+      const newUser = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      setUser(newUser);
+    }
   };
 
   return (
@@ -56,8 +80,7 @@ const AuthForm = ({ heading }) => {
       />
       <OutlinedButton
         icon={googleIcon}
-        text={heading === "login" ? "Login with Google" : "Sign up with Google"}
-        type="submmit"
+        text={heading === "login" ? "Login with Google" : "Sign up with Google"} type="button"
       />
       {heading === "login" ? (
         <p>
