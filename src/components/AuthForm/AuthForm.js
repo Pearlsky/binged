@@ -14,7 +14,7 @@ import {
 } from "firebase/auth";
 import { AuthContext } from "../../services/firebase/auth";
 
-const AuthForm = ({ heading }) => {
+const AuthForm = ({ heading, setStatus, setErrMessage }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
@@ -30,22 +30,33 @@ const AuthForm = ({ heading }) => {
   const { auth, setUser } = useContext(AuthContext);
 
   const submitHandler = async (e) => {
-    e.preventDefault();
-    !email ? setEmailErr(true) : setEmailErr(false);
-    !password ? setPasswordErr(true) : setPasswordErr(false);
-    !repeatPassword ? setRepeatPasswordErr(true) : setRepeatPasswordErr(false);
+    try {
+      e.preventDefault();
+      !email ? setEmailErr(true) : setEmailErr(false);
+      !password ? setPasswordErr(true) : setPasswordErr(false);
+      !repeatPassword
+        ? setRepeatPasswordErr(true)
+        : setRepeatPasswordErr(false);
 
-    if (heading === "login" && isLoginValid) {
-      const newUser = await signInWithEmailAndPassword(auth, email, password);
-      setUser(newUser);
-    }
-    if (heading === "signup" && isSignUpValid) {
-      const newUser = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      setUser(newUser);
+      setStatus("");
+
+      if (heading === "login" && isLoginValid) {
+        const newUser = await signInWithEmailAndPassword(auth, email, password);
+        setUser(newUser);
+        setStatus("success");
+      }
+      if (heading === "signup" && isSignUpValid) {
+        const newUser = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+        setUser(newUser);
+        setStatus("success");
+      }
+    } catch (error) {
+      setStatus("err");
+      setErrMessage(error.message);
     }
   };
 
@@ -80,7 +91,8 @@ const AuthForm = ({ heading }) => {
       />
       <OutlinedButton
         icon={googleIcon}
-        text={heading === "login" ? "Login with Google" : "Sign up with Google"} type="button"
+        text={heading === "login" ? "Login with Google" : "Sign up with Google"}
+        type="button"
       />
       {heading === "login" ? (
         <p>
