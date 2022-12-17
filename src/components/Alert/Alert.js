@@ -2,13 +2,22 @@ import errorIcon from "../../assets/error.svg";
 import successIcon from "../../assets/success.svg";
 import StyledAlert from "./Alert.styles";
 
-const Alert = ({type, message = "Failed to authenticate user"}) => {
+const Alert = ({ type, errMessage, setStatus }) => {
   return (
-    <StyledAlert type={type}>
-      <img alt="" src={type === "err" ? errorIcon : successIcon} />
+    <StyledAlert type={type} errMessage={errMessage}>
+      <img alt="" src={type === "success" ? successIcon : errorIcon} />
       <div>
-        <h3>Could not authenticate user</h3>
-        <p>{message}</p>
+        {type === "success" ? (
+          <p>
+            <span>Success! </span>
+            User authenticated.
+          </p>
+        ) : (
+          <p>
+            <span>Ooops! </span>
+            {errMessage}.
+          </p>
+        )}
       </div>
     </StyledAlert>
   );
