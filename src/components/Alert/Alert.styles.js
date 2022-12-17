@@ -1,32 +1,62 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+import { weights as weight } from "../../utils/variables";
+
+const AlertAppear = keyframes`
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  1% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+
+  99%  {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+  
+  100% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+`;
 
 const StyledAlert = styled.section`
   position: absolute;
-  top: 15px;
-  display: flex;
+  top: 3em;
   align-items: center;
-  color: ${({type}) =>
-    type === "err" ? "rgb(150, 15, 15)" : "rgb(10, 105, 70)"};
-  background-color: ${({type}) =>
-    type === "err" ? "rgb(255, 175, 175)" : "rgb(200, 255, 200)"};
-  border: solid 1px
-    ${({type}) => (type === "err" ? "rgb(150, 15, 15)" : "rgb(10, 105, 70)")};
+  animation: ${AlertAppear} 4s linear alternate forwards;
+  background-color: ${({ type }) =>
+    type === "success" ? "rgb(200, 255, 200)" : "rgb(255, 175, 175) "};
+  border: solid 2px
+    ${({ type }) => (type === "success" ? "rgb(10, 95, 80)" : "rgb(150, 15, 15)")};
   border-radius: 5px;
-  max-width: 400px;
-  padding-inline: 0.5em 3em;
-  padding-block: 0.5em;
+  color: rgb(30, 30, 50);
+  display: ${({ type }) => (type === "" ? "none" : "flex")};
+  font-size: 1.15em;
+  padding-inline: 0.7em;
+  padding-block: 0.7em;
 
   img {
     flex-basis: 7%;
-    margin-right: 0.7em;
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    max-width: 100%;
   }
 
-  h3 {
-    margin: 0;
+  div {
+    flex-basis: 93%;
   }
 
   p {
     margin: 0;
+
+    span {
+      font-weight: ${weight.medium};
+    }
   }
 `;
 
