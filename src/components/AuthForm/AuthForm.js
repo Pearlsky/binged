@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import * as ROUTES from "../../constants/routes";
 
@@ -23,11 +24,12 @@ const AuthForm = ({ heading, setStatus, setErrMessage }) => {
   const [passwordErr, setPasswordErr] = useState(false);
   const [repeatPasswordErr, setRepeatPasswordErr] = useState(false);
 
+  const { auth, setUser } = useContext(AuthContext);
+
+  const navigate = useNavigate();
   const isSignUpValid =
     email !== "" && password !== "" && repeatPassword !== "";
   const isLoginValid = email !== "" && password !== "";
-
-  const { auth, setUser } = useContext(AuthContext);
 
   const submitHandler = async (e) => {
     try {
@@ -44,6 +46,7 @@ const AuthForm = ({ heading, setStatus, setErrMessage }) => {
         const newUser = await signInWithEmailAndPassword(auth, email, password);
         setUser(newUser);
         setStatus("success");
+        navigate(ROUTES.HOME);
       }
       if (heading === "signup" && isSignUpValid) {
         const newUser = await createUserWithEmailAndPassword(
@@ -53,6 +56,7 @@ const AuthForm = ({ heading, setStatus, setErrMessage }) => {
         );
         setUser(newUser);
         setStatus("success");
+        navigate(ROUTES.HOME);
       }
     } catch (error) {
       setStatus("err");
