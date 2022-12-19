@@ -6,7 +6,7 @@ const auth = getAuth(firebase);
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(auth.currentUser);
+  const [user, setUser] = useState("");
   return <AuthContext.Provider value={{auth, user, setUser}}>{children}</AuthContext.Provider>;
 };
 
