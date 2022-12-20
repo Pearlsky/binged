@@ -3,7 +3,7 @@ import { colors as color, weights as weight } from "../../utils/variables";
 
 const StyledAuthForm = styled.form`
   background-color: ${color.semidarkblue};
-  border-radius: 10px;
+  border-radius: 20px;
   font-weight: ${weight.light};
   font-family: "Outfit", sans-serif;
   margin-top: 4em;
