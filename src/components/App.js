@@ -6,7 +6,7 @@ import GlobalStyles from "../utils/Global.styles";
 import * as ROUTES from "../constants/routes";
 
 import Alert from "./Alert/Alert";
-import AuthPage from "./AuthPage/AuthPage";
+import AuthPage from "../views/AuthPage/AuthPage";
 
 function App() {
   const { user } = useContext(AuthContext);
