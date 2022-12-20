@@ -2,22 +2,23 @@ import errorIcon from "../../assets/error.svg";
 import successIcon from "../../assets/success.svg";
 import StyledAlert from "./Alert.styles";
 
-const Alert = ({ type, errMessage, setStatus }) => {
+const Alert = ({ type, errMessage }) => {
   return (
     <StyledAlert type={type} errMessage={errMessage}>
-      <img alt="" src={type === "success" ? successIcon : errorIcon} />
       <div>
-        {type === "success" ? (
-          <p>
-            <span>Success! </span>
-            User authenticated.
-          </p>
-        ) : (
-          <p>
-            <span>Ooops! </span>
-            {errMessage}.
-          </p>
-        )}
+        <img alt="" src={type === "success" ? successIcon : errorIcon} />
+        <p>
+          {type === "success" ? (
+            <span>
+              <strong>Success! </strong>User authenticated.
+            </span>
+          ) : (
+            <span>
+              <strong>Ooops! </strong>
+              {errMessage}.
+            </span>
+          )}
+        </p>
       </div>
     </StyledAlert>
   );
