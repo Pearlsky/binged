@@ -24,20 +24,27 @@ const AlertAppear = keyframes`
 `;
 
 const StyledAlert = styled.section`
-  position: absolute;
-  top: 3em;
-  align-items: center;
-  animation: ${AlertAppear} 4s linear alternate forwards;
-  background-color: ${({ type }) =>
-    type === "success" ? "rgb(200, 255, 200)" : "rgb(255, 175, 175) "};
-  border: solid 2px
-    ${({ type }) => (type === "success" ? "rgb(10, 95, 80)" : "rgb(150, 15, 15)")};
-  border-radius: 5px;
-  color: rgb(30, 30, 50);
-  display: ${({ type }) => (type === "" ? "none" : "flex")};
-  font-size: 1.15em;
-  padding-inline: 0.7em;
-  padding-block: 0.7em;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  div {
+    position: absolute;
+    top: 3em;
+    align-items: center;
+    animation: ${AlertAppear} 4s linear alternate forwards;
+    background-color: ${({ type }) =>
+      type === "success" ? "rgb(200, 255, 200)" : "rgb(255, 175, 175) "};
+    border: solid 2px
+      ${({ type }) =>
+        type === "success" ? "rgb(10, 95, 80)" : "rgb(150, 15, 15)"};
+    border-radius: 5px;
+    color: rgb(30, 30, 50);
+    display: ${({ type }) => (type === "" ? "none" : "flex")};
+    font-size: 1.15em;
+    padding-inline: 0.7em;
+    padding-block: 0.7em;
+  }
 
   img {
     flex-basis: 7%;
@@ -47,14 +54,11 @@ const StyledAlert = styled.section`
     max-width: 100%;
   }
 
-  div {
-    flex-basis: 93%;
-  }
-
   p {
     margin: 0;
-
-    span {
+    display: flex;
+    flex-basis: 93%;
+    strong {
       font-weight: ${weight.medium};
     }
   }
