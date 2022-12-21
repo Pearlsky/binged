@@ -32,6 +32,8 @@ const AuthForm = ({ heading, setStatus, setErrMessage }) => {
   const isLoginValid = email !== "" && password !== "";
 
   const submitHandler = async (e) => {
+    setStatus("");
+
     try {
       e.preventDefault();
       !email ? setEmailErr(true) : setEmailErr(false);
@@ -40,11 +42,9 @@ const AuthForm = ({ heading, setStatus, setErrMessage }) => {
         ? setRepeatPasswordErr(true)
         : setRepeatPasswordErr(false);
 
-      setStatus("");
-
       if (heading === "login" && isLoginValid) {
         const newUser = await signInWithEmailAndPassword(auth, email, password);
-        setUser(newUser);
+        setUser(newUser?.user);
         setStatus("success");
         navigate(ROUTES.HOME);
       }
@@ -54,7 +54,7 @@ const AuthForm = ({ heading, setStatus, setErrMessage }) => {
           email,
           password
         );
-        setUser(newUser);
+        setUser(newUser?.user);
         setStatus("success");
         navigate(ROUTES.HOME);
       }
