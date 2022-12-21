@@ -32,7 +32,7 @@ const StyledAlert = styled.section`
     position: absolute;
     top: 3em;
     align-items: center;
-    animation: ${AlertAppear} 4s linear alternate forwards;
+    animation: ${AlertAppear} 7s linear alternate forwards;
     background-color: ${({ type }) =>
       type === "success" ? "rgb(200, 255, 200)" : "rgb(255, 175, 175) "};
     border: solid 2px
@@ -40,7 +40,8 @@ const StyledAlert = styled.section`
         type === "success" ? "rgb(10, 95, 80)" : "rgb(150, 15, 15)"};
     border-radius: 5px;
     color: rgb(30, 30, 50);
-    display: ${({ type }) => (type === "" ? "none" : "flex")};
+    display: ${({ type }) =>
+      type === "err" || type === "success" ? "flex" : "none"};
     font-size: 1.15em;
     padding-inline: 0.7em;
     padding-block: 0.7em;
