@@ -11,3 +11,17 @@ export const weights = {
   light: 300,
   medium: 500,
 };
+
+export const breakpoints = {
+  // 1200px
+  desktop: "min-width: 83em",
+
+  // 950px
+  laptop: "min-width: 66em",
+
+  // 768px
+  tablet: "min-width: 53em",
+
+  // 400px
+  mobile: "min-width: 28em",
+};
