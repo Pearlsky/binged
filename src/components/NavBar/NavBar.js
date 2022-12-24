@@ -89,4 +89,4 @@ export const NavTabs = () => {
   );
 };
 
-export default NavBar;
+export default NavBar
