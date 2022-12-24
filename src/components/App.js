@@ -3,6 +3,7 @@ import { useState, useContext } from "react";
 import { AuthContext } from "../services/firebase/auth";
 
 import GlobalStyles from "../utils/Global.styles";
+import { StyledAppContainer } from "./App.styles";
 import * as ROUTES from "../constants/routes";
 
 import Alert from "./Alert/Alert";
@@ -45,41 +46,44 @@ function App() {
           }
         />
       </Routes>
-      {isLoggedIn && <NavBar />}
-      <Routes>
-        <Route
-          path={ROUTES.HOME}
-          element={
-            <ProtectedRoute isLoggedIn={isLoggedIn}>
-              <Home />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path={ROUTES.MOVIES}
-          element={
-            <ProtectedRoute isLoggedIn={isLoggedIn}>
-              <Movies />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path={ROUTES.TV_SERIES}
-          element={
-            <ProtectedRoute isLoggedIn={isLoggedIn}>
-              <TVSeries />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path={ROUTES.BOOKMARKS}
-          element={
-            <ProtectedRoute isLoggedIn={isLoggedIn}>
-              <Bookmarks />
-            </ProtectedRoute>
-          }
-        />
-      </Routes>
+
+      <StyledAppContainer>
+        {isLoggedIn && <NavBar />}
+        <Routes>
+          <Route
+            path={ROUTES.HOME}
+            element={
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
+                <Home />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={ROUTES.MOVIES}
+            element={
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
+                <Movies />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={ROUTES.TV_SERIES}
+            element={
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
+                <TVSeries />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={ROUTES.BOOKMARKS}
+            element={
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
+                <Bookmarks />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </StyledAppContainer>
     </>
   );
 }
