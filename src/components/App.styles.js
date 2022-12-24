@@ -1,11 +1,9 @@
 import styled from "styled-components";
+import { breakpoints as breakpoint } from "../utils/variables";
 
-const StyledApp = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  max-width: 1800px;
+export const StyledAppContainer = styled.div`
+  @media (${breakpoint.laptop}) {
+    display: flex;
+    height: 100%;
+  }
 `;
-
-export default StyledApp;
