@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components";
 import { colors as color, weights as weight } from "./variables";
 
 const GlobalStyles = createGlobalStyle`
-:root {
+  :root {
     box-sizing: border-box;
     font-size: 0.93em;
   }
@@ -13,6 +13,10 @@ const GlobalStyles = createGlobalStyle`
     box-sizing: inherit;
   }
   
+  #root {
+    height: 100%;
+  }
+
   body {
     margin: 0;
     background-color: ${color.darkblue};
