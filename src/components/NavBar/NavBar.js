@@ -3,31 +3,42 @@ import { NavLink } from "react-router-dom";
 import * as ROUTES from "../../constants/routes";
 import Avatar from "../Avatar/Avatar";
 import Logo from "../Logo/Logo";
-import StyledNavBar, { StyledNavTabs } from "./NavBar.styles";
+import StyledNavBar, {
+  StyledNavContainer,
+  StyledNavTabs,
+} from "./NavBar.styles";
 
 const NavBar = () => {
   return (
-    <StyledNavBar>
-      <Logo />
-      <NavTabs />
-      <Avatar />
-    </StyledNavBar>
+    <StyledNavContainer>
+      <StyledNavBar aria-label="Tab navigation" role="region">
+        <Logo />
+        <NavTabs />
+        <Avatar />
+      </StyledNavBar>
+    </StyledNavContainer>
   );
 };
 
 export const NavTabs = () => {
   return (
     <StyledNavTabs>
-      <NavLink to={ROUTES.HOME}>
-        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+      <NavLink to={ROUTES.HOME} aria-label="home">
+        <svg
+          aria-hidden="true"
+          width="20"
+          height="20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <path
             d="M8 0H1C.4 0 0 .4 0 1v7c0 .6.4 1 1 1h7c.6 0 1-.4 1-1V1c0-.6-.4-1-1-1Zm0 11H1c-.6 0-1 .4-1 1v7c0 .6.4 1 1 1h7c.6 0 1-.4 1-1v-7c0-.6-.4-1-1-1ZM19 0h-7c-.6 0-1 .4-1 1v7c0 .6.4 1 1 1h7c.6 0 1-.4 1-1V1c0-.6-.4-1-1-1Zm0 11h-7c-.6 0-1 .4-1 1v7c0 .6.4 1 1 1h7c.6 0 1-.4 1-1v-7c0-.6-.4-1-1-1Z"
             fill="#5A698F"
           />
         </svg>
       </NavLink>
-      <NavLink to={ROUTES.MOVIES}>
+      <NavLink to={ROUTES.MOVIES} aria-label="movies">
         <svg
+          aria-hidden="true"
           width="21"
           height="20"
           viewBox="0 0 21 20"
@@ -42,8 +53,9 @@ export const NavTabs = () => {
           />
         </svg>
       </NavLink>
-      <NavLink to={ROUTES.TV_SERIES}>
+      <NavLink to={ROUTES.TV_SERIES} aria-label="tv series">
         <svg
+          aria-hidden="true"
           width="21"
           height="20"
           viewBox="0 0 21 20"
@@ -58,7 +70,7 @@ export const NavTabs = () => {
           />
         </svg>
       </NavLink>
-      <NavLink to={ROUTES.BOOKMARKS} aria-label="Bookmarks Tab">
+      <NavLink to={ROUTES.BOOKMARKS} aria-label="bookmarks">
         <svg
           aria-hidden="true"
           width="18"
