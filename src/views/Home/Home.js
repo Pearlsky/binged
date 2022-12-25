@@ -1,4 +1,3 @@
-import { PlayButton } from "../../components/MovieListing/MovieListing";
 import StyledHomeView from "./Home.styles";
 
 const Home = () => {
@@ -8,7 +7,6 @@ const Home = () => {
         role="region"
         aria-label="Home Tab Content"
       ></StyledHomeView>
-      <PlayButton/>
     </>
   );
 };
