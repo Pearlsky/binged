@@ -1,8 +1,10 @@
 import { BookmarkButton, PlayButton } from "../Button/Button";
 import StyledMovieListing, {
+  StyledMovieDetails,
   StyledMovieSubDetails,
   StyledMovieThumbnail,
   StyledMovieTitle,
+  StyledTrendingListing,
 } from "./MovieListing.styles";
 
 const MovieListing = () => {
@@ -12,21 +14,31 @@ const MovieListing = () => {
         <BookmarkButton />
         <PlayButton />
       </StyledMovieThumbnail>
-      <div>
+      <MovieDetails title="Broski" year="1994" category="Movies" rating="18+" />
+    </StyledMovieListing>
+  );
+};
+
+export const TrendingListing = () => {
+  return (
+    <StyledTrendingListing>
+      <StyledMovieThumbnail>
+        <BookmarkButton />
+        <PlayButton />
         <MovieDetails
           title="Broski"
           year="1994"
           category="Movies"
           rating="18+"
         />
-      </div>
-    </StyledMovieListing>
+      </StyledMovieThumbnail>
+    </StyledTrendingListing>
   );
 };
 
 export const MovieDetails = ({ title, year, category, rating }) => {
   return (
-    <>
+    <StyledMovieDetails>
       <StyledMovieSubDetails category={category}>
         <small>{year}</small>
         <span></span>
@@ -42,7 +54,7 @@ export const MovieDetails = ({ title, year, category, rating }) => {
         <small>{rating}</small>
       </StyledMovieSubDetails>
       <StyledMovieTitle>{title}</StyledMovieTitle>
-    </>
+    </StyledMovieDetails>
   );
 };
 
