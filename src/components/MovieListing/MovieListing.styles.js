@@ -1,7 +1,10 @@
 import styled from "styled-components";
 import { colors as color, weights as weight } from "../../utils/variables";
+
 import bookmarkIconFull from "../../assets/icon-bookmark-full.svg";
 import bookmarkIconEmpty from "../../assets/icon-bookmark-empty.svg";
+import movieCategoryIcon from "../../assets/icon-category-movie.svg";
+import tvseriesCategoryIcon from "../../assets/icon-category-tv.svg"
 
 const StyledMovieListing = styled.article``;
 
@@ -21,6 +24,13 @@ export const StyledMovieDetails = styled.div`
     div {
         display: flex;
         align-items: center;
+
+        > span {
+            background: no-repeat url(${({category}) => category === "Movie" ? movieCategoryIcon : tvseriesCategoryIcon});
+            display: block;
+            height: 1em;
+            width: 1em;
+        }
     }
 `;
 
