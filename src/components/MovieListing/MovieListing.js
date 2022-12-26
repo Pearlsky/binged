@@ -1,15 +1,34 @@
-import { useState } from "react";
-import {
-  StyledBookmarkButton,
-  StyledMovieDetails,
-  StyledPlayButton,
+import { BookmarkButton, PlayButton } from "../Button/Button";
+import StyledMovieListing, {
+  StyledMovieSubDetails,
+  StyledMovieThumbnail,
+  StyledMovieTitle,
 } from "./MovieListing.styles";
 
-export const MovieDetails = ({ date, category, rating }) => {
+const MovieListing = () => {
+  return (
+    <StyledMovieListing>
+      <StyledMovieThumbnail>
+        <BookmarkButton />
+        <PlayButton />
+      </StyledMovieThumbnail>
+      <div>
+        <MovieDetails
+          title="Broski"
+          year="1994"
+          category="Movies"
+          rating="18+"
+        />
+      </div>
+    </StyledMovieListing>
+  );
+};
+
+export const MovieDetails = ({ title, year, category, rating }) => {
   return (
     <>
-      <StyledMovieDetails category={category}>
-        <small>2019</small>
+      <StyledMovieSubDetails category={category}>
+        <small>{year}</small>
         <span></span>
         <div>
           <span></span>
@@ -20,36 +39,11 @@ export const MovieDetails = ({ date, category, rating }) => {
           )}
         </div>
         <span></span>
-        <small>PG</small>
-      </StyledMovieDetails>
+        <small>{rating}</small>
+      </StyledMovieSubDetails>
+      <StyledMovieTitle>{title}</StyledMovieTitle>
     </>
   );
 };
 
-export const BookmarkButton = () => {
-  const [isBookmarked, setIsBookmarked] = useState(false);
-  const bookmarkHandler = () => {
-    setIsBookmarked(!isBookmarked);
-  };
-
-  return (
-    <StyledBookmarkButton
-      isBookmarked={isBookmarked}
-      onClick={() => bookmarkHandler()}
-    />
-  );
-};
-
-export const PlayButton = () => {
-  return (
-    <StyledPlayButton aria-labelledby="playBtn ">
-      <svg width="30" height="30" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M15 0C6.713 0 0 6.713 0 15c0 8.288 6.713 15 15 15 8.288 0 15-6.712 15-15 0-8.287-6.712-15-15-15Zm-3 21V8l9 6.5-9 6.5Z"
-          fill="#FFF"
-        />
-      </svg>
-      <span id="playBtn">Play</span>
-    </StyledPlayButton>
-  );
-};
+export default MovieListing;
