@@ -7,12 +7,13 @@ const StyledMovieListing = styled.article``;
 
 export const StyledBookmarkButton = styled.button`
   background: no-repeat url(${({ isBookmarked }) => isBookmarked ? bookmarkIconFull : bookmarkIconEmpty});
-  background-color: ${color.darkblue};
+  background-color: rgba(16, 20, 30, 0.6);
   border: none;
-  background-position: 50%;
-  width: 2.5em;
-  height: 2.5em;
-  text-indent: 5em;
+  background-position: center;
+  background-size: 15px;
+  width: 3em;
+  height: 3em;
+  text-indent: 4em;
   white-space: nowrap;
   overflow: hidden;
   padding: 1em;
@@ -22,7 +23,7 @@ export const StyledBookmarkButton = styled.button`
 export const StyledPlayButton = styled.button`
   font-size: 1.15rem;
   height: fit-content;
-  background-color: #979797;
+  background-color: rgba(255, 255, 255, 0.2);
   border-radius: 30px;
   border: none;
   color: ${color.white};
