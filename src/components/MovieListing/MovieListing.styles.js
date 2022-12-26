@@ -5,6 +5,25 @@ import bookmarkIconEmpty from "../../assets/icon-bookmark-empty.svg";
 
 const StyledMovieListing = styled.article``;
 
+export const StyledMovieDetails = styled.div`
+    display: flex;
+    align-items: center;
+    height: fit-content;
+    > span {
+        display: block;
+        height: 2px;
+        width: 2px;
+        border-radius: 50%;
+        background-color: ${color.gray};
+        margin-inline: .5em;
+    }
+
+    div {
+        display: flex;
+        align-items: center;
+    }
+`;
+
 export const StyledBookmarkButton = styled.button`
   background: no-repeat url(${({ isBookmarked }) => isBookmarked ? bookmarkIconFull : bookmarkIconEmpty});
   background-color: rgba(16, 20, 30, 0.6);
