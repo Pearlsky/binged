@@ -45,8 +45,13 @@ export const StyledNavTabs = styled.nav`
     padding-top: 2em;
   }
 
+  a:hover path {
+    fill: ${color.redprimary};
+  }
+
   a.active path {
     fill: ${color.white};
   }
+  
 `;
 export default StyledNavBar;
