@@ -1,4 +1,4 @@
-import { getAuth } from "firebase/auth";
+import { getAuth} from "firebase/auth";
 import { createContext, useState } from "react";
 import firebase from "./firebase";
 
