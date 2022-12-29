@@ -11,6 +11,7 @@ import StyledAuthForm from "./AuthForm.styles";
 import googleIcon from "../../assets/Google.svg";
 import {
   createUserWithEmailAndPassword,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { AuthContext } from "../../services/firebase/auth";
@@ -24,12 +25,22 @@ const AuthForm = ({ heading, setStatus, setErrMessage }) => {
   const [passwordErr, setPasswordErr] = useState(false);
   const [repeatPasswordErr, setRepeatPasswordErr] = useState(false);
 
+  const isSignUpValid =
+    email !== "" &&
+    password !== "" &&
+    repeatPassword !== "" &&
+    repeatPassword === password;
+  const isLoginValid = email !== "" && password !== "";
+
   const { auth, setUser } = useContext(AuthContext);
 
+  onAuthStateChanged(auth, (currentUser) => {
+    setUser(currentUser);
+  });
+
+  const errorStringify = (string) => string.slice(22, -2).replaceAll("-", " ");
+
   const navigate = useNavigate();
-  const isSignUpValid =
-    email !== "" && password !== "" && repeatPassword !== "";
-  const isLoginValid = email !== "" && password !== "";
 
   const submitHandler = async (e) => {
     setStatus("");
@@ -43,24 +54,18 @@ const AuthForm = ({ heading, setStatus, setErrMessage }) => {
         : setRepeatPasswordErr(false);
 
       if (heading === "login" && isLoginValid) {
-        const newUser = await signInWithEmailAndPassword(auth, email, password);
-        setUser(newUser?.user);
+        await signInWithEmailAndPassword(auth, email, password);
         setStatus("success");
         navigate(ROUTES.HOME);
       }
       if (heading === "signup" && isSignUpValid) {
-        const newUser = await createUserWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
-        setUser(newUser?.user);
+        await createUserWithEmailAndPassword(auth, email, password);
         setStatus("success");
         navigate(ROUTES.HOME);
       }
     } catch (error) {
       setStatus("err");
-      setErrMessage(error.message);
+      setErrMessage(errorStringify(error.message));
     }
   };
 
