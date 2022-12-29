@@ -63,6 +63,11 @@ const StyledAlert = styled.section`
       font-weight: ${weight.medium};
     }
   }
+
+  small {
+    text-transform: capitalize;
+    font-size: 1.05rem;
+  }
 `;
 
 export default StyledAlert;
