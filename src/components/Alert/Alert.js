@@ -12,12 +12,12 @@ const Alert = ({ type, errMessage }) => {
             <p>
               {type === "success" ? (
                 <span>
-                  <strong>Success! </strong>User authenticated.
+                  <strong>Success! </strong><small>user authenticated</small>
                 </span>
               ) : (
                 <span>
                   <strong>Ooops! </strong>
-                  {errMessage}.
+                  <small>{errMessage}</small>
                 </span>
               )}
             </p>
