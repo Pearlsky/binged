@@ -12,4 +12,4 @@ const AuthProvider = ({ children }) => {
   return <AuthContext.Provider value={{auth, isLoggedIn, setUser}}>{children}</AuthContext.Provider>;
 };
 
-export { AuthContext, AuthProvider };
+export { AuthContext, AuthProvider }; 
