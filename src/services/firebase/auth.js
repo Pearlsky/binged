@@ -1,4 +1,4 @@
-import { getAuth} from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import { createContext, useState } from "react";
 import firebase from "./firebase";
 
@@ -8,8 +8,12 @@ const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState("");
   const isLoggedIn = !!user;
-  
-  return <AuthContext.Provider value={{auth, isLoggedIn, setUser}}>{children}</AuthContext.Provider>;
+
+  return (
+    <AuthContext.Provider value={{ auth, isLoggedIn, setUser }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
-export { AuthContext, AuthProvider }; 
+export { AuthContext, AuthProvider };
