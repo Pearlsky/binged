@@ -20,6 +20,7 @@ function App() {
   const [status, setStatus] = useState("");
   const [errMessage, setErrMessage] = useState("");
   const { isLoggedIn } = useContext(AuthContext);
+
   return (
     <>
       <GlobalStyles />
