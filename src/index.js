@@ -4,13 +4,16 @@ import App from "./components/App";
 import reportWebVitals from "./reportWebVitals";
 import { AuthProvider } from "./services/firebase/auth";
 import { BrowserRouter as Router } from "react-router-dom";
+import { DbProvider } from "./services/firebase/db";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <AuthProvider>
-    <Router>
-      <App />
-    </Router>
+    <DbProvider>
+      <Router>
+        <App />
+      </Router>
+    </DbProvider>
   </AuthProvider>
 );
 
