@@ -10,7 +10,7 @@ const AuthProvider = ({ children }) => {
   const isLoggedIn = !!user;
 
   return (
-    <AuthContext.Provider value={{ auth, isLoggedIn, setUser }}>
+    <AuthContext.Provider value={{ auth, isLoggedIn, user, setUser }}>
       {children}
     </AuthContext.Provider>
   );
