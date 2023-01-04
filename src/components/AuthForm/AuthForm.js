@@ -16,7 +16,7 @@ import {
 } from "firebase/auth";
 import { AuthContext } from "../../services/firebase/auth";
 import { DbContext } from "../../services/firebase/db";
-import { ref, set } from "firebase/database";
+import { get, ref, set } from "firebase/database";
 
 const AuthForm = ({ heading, setStatus, setErrMessage }) => {
   const [email, setEmail] = useState("");
@@ -35,21 +35,32 @@ const AuthForm = ({ heading, setStatus, setErrMessage }) => {
   const isLoginValid = email !== "" && password !== "";
 
   const navigate = useNavigate();
-  const { auth, user, setUser } = useContext(AuthContext);
+  const { auth, setUser } = useContext(AuthContext);
   const db = useContext(DbContext);
 
   const errorStringify = (string) => string.slice(22, -2).replaceAll("-", " ");
-  const createUser = (userId, name, email) => {
+  const createUserAndUserData = (userId, name, email) => {
+    const listingsRef = ref(db, "listings");
     const userRef = ref(db, "users/" + userId);
-    set(userRef, {
-      username: name,
-      email: email,
+
+    get(listingsRef).then((snapshot) => {
+      const data = snapshot.val();
+      set(userRef, {
+        username: name,
+        email: email,
+        userListing: data,
+      });
     });
-    console.log(userRef);
   };
 
   onAuthStateChanged(auth, (currentUser) => {
     setUser(currentUser);
+    currentUser &&
+      createUserAndUserData(
+        currentUser.uid,
+        currentUser.displayName,
+        currentUser.email
+      );
   });
   const submitHandler = async (e) => {
     setStatus("");
@@ -64,13 +75,11 @@ const AuthForm = ({ heading, setStatus, setErrMessage }) => {
 
       if (heading === "login" && isLoginValid) {
         await signInWithEmailAndPassword(auth, email, password);
-        user && createUser(user.uid, user.displayName, user.email);
         setStatus("success");
         navigate(ROUTES.HOME);
       }
       if (heading === "signup" && isSignUpValid) {
         await createUserWithEmailAndPassword(auth, email, password);
-        user && createUser(user.uid, user.displayName, user.email);
         setStatus("success");
         navigate(ROUTES.HOME);
       }
