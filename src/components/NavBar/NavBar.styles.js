@@ -4,8 +4,12 @@ import { breakpoints as breakpoint } from "../../utils/variables";
 
 export const StyledNavContainer = styled.div`
   @media (${breakpoint.mobile}) {
-    margin-block: 1.5em;
+    margin-block: 1.5em 0;
     margin-inline: 1.5em;
+  }
+
+  @media (${breakpoint.laptop}) {
+    margin-inline: 1.5em 0;
   }
 `;
 
@@ -14,7 +18,7 @@ const StyledNavBar = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-inline: 1.5em;
+  padding-inline: 1em;
   padding-block: 1em;
   background-color: ${color.semidarkblue};
 
@@ -23,6 +27,7 @@ const StyledNavBar = styled.div`
   }
 
   @media (${breakpoint.laptop}) {
+    padding-inline: 2em;
     height: 100%;
     flex-direction: column;
     align-items: center;
@@ -34,6 +39,7 @@ const StyledNavBar = styled.div`
 export const StyledNavTabs = styled.nav`
   flex-basis: 40%;
   max-width: 200px;
+  min-width: 150px;
   display: flex;
   justify-content: space-between;
 
@@ -42,6 +48,7 @@ export const StyledNavTabs = styled.nav`
     align-items: center;
     justify-content: space-evenly;
     flex-basis: 35%;
+    min-width: 0;
     padding-top: 2em;
   }
 
@@ -52,6 +59,5 @@ export const StyledNavTabs = styled.nav`
   a.active path {
     fill: ${color.white};
   }
-  
 `;
 export default StyledNavBar;
