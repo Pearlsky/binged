@@ -7,14 +7,14 @@ import StyledMovieListing, {
   StyledTrendingListing,
 } from "./MovieListing.styles";
 
-const MovieListing = () => {
+const MovieListing = ({title, year, category, rating, thumbnail}) => {
   return (
     <StyledMovieListing>
-      <StyledMovieThumbnail>
+      <StyledMovieThumbnail thumbnail={thumbnail}>
         <BookmarkButton />
         <PlayButton />
       </StyledMovieThumbnail>
-      <MovieDetails title="Broski" year="1994" category="Movies" rating="18+" />
+      <MovieDetails title={title} year={year} category={category} rating={rating} />
     </StyledMovieListing>
   );
 };
