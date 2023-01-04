@@ -1,3 +1,5 @@
+import Searchbar from "../../components/SearchBar/Searchbar";
+import { RegularSection } from "../Home/Home";
 import StyledBookmarksView from "./Bookmarks.styles";
 
 const Bookmarks = () => {
@@ -5,7 +7,11 @@ const Bookmarks = () => {
     <StyledBookmarksView
       role="region"
       aria-label="Bookmarks Tab Content"
-    ></StyledBookmarksView>
+    >
+      <Searchbar keyword="bookmarked shows"/>
+      <RegularSection heading="Bookmarked Movies"/>
+      <RegularSection heading="Bookmarked TV Series"/>
+    </StyledBookmarksView>
   );
 };
 
