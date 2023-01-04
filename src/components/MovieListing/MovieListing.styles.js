@@ -1,12 +1,10 @@
 import styled from "styled-components";
-import { colors as color, weights as weight } from "../../utils/variables";
+import { breakpoints as breakpoint, colors as color, weights as weight } from "../../utils/variables";
 
 import movieCategoryIcon from "../../assets/icon-category-movie.svg";
 import tvseriesCategoryIcon from "../../assets/icon-category-tv.svg";
 
 const StyledMovieListing = styled.article`
-  width: 270px;
-  height: 250px;
   display: flex;
   flex-direction: column;
 `;
@@ -24,7 +22,7 @@ export const StyledTrendingListing = styled.article`
 
 export const StyledMovieThumbnail = styled.div`
   border-radius: 10px;
-  flex-basis: 70%;
+  flex-basis: 75%;
   position: relative;
   background-color: ${color.grayishblue};
   display: flex;
@@ -50,8 +48,12 @@ export const StyledMovieThumbnail = styled.div`
 
 export const StyledMovieTitle = styled.h3`
   margin-block: 0;
-  font-size: 1.16rem;
+  font-size: 1rem;
   font-weight: ${weight.medium};
+
+  @media (${breakpoint.tablet}) {
+    font-size: 1.1rem;
+  }
 `;
 
 export const StyledMovieDetails = styled.div``;
