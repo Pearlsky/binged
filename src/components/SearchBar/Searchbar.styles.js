@@ -8,13 +8,18 @@ const StyledSearchbar = styled.article`
   label {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: start;
+  }
+
+  svg {
+    min-width: 30px;
+    min-height: 20px;
+    margin-right: .7em;
   }
 
   input {
     margin: 0;
     flex-basis: 100%;
-    margin-left: 1em;
     background-color: ${color.darkblue};
     font-size: 1.3rem;
     font-family: "Outfit", sans-serif;
