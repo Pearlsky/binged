@@ -15,11 +15,39 @@ import NavBar from "./NavBar/NavBar";
 import Movies from "../views/Movies/Movies";
 import TVSeries from "../views/TVSeries/TVSeries";
 import Bookmarks from "../views/Bookmarks/Bookmarks";
+import { get, ref, set } from "firebase/database";
+import { onAuthStateChanged } from "firebase/auth";
+import { DbContext } from "../services/firebase/db";
 
 function App() {
   const [status, setStatus] = useState("");
   const [errMessage, setErrMessage] = useState("");
-  const { isLoggedIn } = useContext(AuthContext);
+  const { auth, isLoggedIn, setUser } = useContext(AuthContext);
+  const db = useContext(DbContext);
+
+  const createUserAndUserData = (userId, name, email) => {
+    const listingsRef = ref(db, "listings");
+    const userRef = ref(db, "users/" + userId);
+
+    get(listingsRef).then((snapshot) => {
+      const data = snapshot.val();
+      set(userRef, {
+        username: name,
+        email: email,
+        userListing: data,
+      });
+    });
+  };
+
+  onAuthStateChanged(auth, (currentUser) => {
+    setUser(currentUser);
+    currentUser &&
+      createUserAndUserData(
+        currentUser.uid,
+        currentUser.displayName,
+        currentUser.email
+      );
+  });
 
   return (
     <>
