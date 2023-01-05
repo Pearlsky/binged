@@ -11,12 +11,9 @@ import StyledAuthForm from "./AuthForm.styles";
 import googleIcon from "../../assets/Google.svg";
 import {
   createUserWithEmailAndPassword,
-  onAuthStateChanged,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { AuthContext } from "../../services/firebase/auth";
-import { DbContext } from "../../services/firebase/db";
-import { get, ref, set } from "firebase/database";
 
 const AuthForm = ({ heading, setStatus, setErrMessage }) => {
   const [email, setEmail] = useState("");
@@ -35,33 +32,10 @@ const AuthForm = ({ heading, setStatus, setErrMessage }) => {
   const isLoginValid = email !== "" && password !== "";
 
   const navigate = useNavigate();
-  const { auth, setUser } = useContext(AuthContext);
-  const db = useContext(DbContext);
+  const { auth } = useContext(AuthContext);
 
   const errorStringify = (string) => string.slice(22, -2).replaceAll("-", " ");
-  const createUserAndUserData = (userId, name, email) => {
-    const listingsRef = ref(db, "listings");
-    const userRef = ref(db, "users/" + userId);
 
-    get(listingsRef).then((snapshot) => {
-      const data = snapshot.val();
-      set(userRef, {
-        username: name,
-        email: email,
-        userListing: data,
-      });
-    });
-  };
-
-  onAuthStateChanged(auth, (currentUser) => {
-    setUser(currentUser);
-    currentUser &&
-      createUserAndUserData(
-        currentUser.uid,
-        currentUser.displayName,
-        currentUser.email
-      );
-  });
   const submitHandler = async (e) => {
     setStatus("");
 
