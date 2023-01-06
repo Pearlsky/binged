@@ -10,6 +10,7 @@ export const StyledNavContainer = styled.div`
 
   @media (${breakpoint.laptop}) {
     margin-inline: 1.5em 0;
+    margin-block: 1.5em;
   }
 `;
 
