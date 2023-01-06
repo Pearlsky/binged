@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import * as ROUTES from "../../constants/routes";
 import { AuthContext } from "../../services/firebase/auth";
 import Avatar from "../Avatar/Avatar";
+import { LogoutButton } from "../Button/Button";
 import Logo from "../Logo/Logo";
 import StyledNavBar, {
   StyledNavContainer,
@@ -23,6 +24,7 @@ const NavBar = () => {
         <Logo />
         <NavTabs />
         <Avatar />
+        <LogoutButton onClick={logoutHandler} />
       </StyledNavBar>
     </StyledNavContainer>
   );
