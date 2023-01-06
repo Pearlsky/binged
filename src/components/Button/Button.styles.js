@@ -3,7 +3,7 @@ import { colors as color, weights as weight } from "../../utils/variables";
 import bookmarkIconFull from "../../assets/icon-bookmark-full.svg";
 import bookmarkIconEmpty from "../../assets/icon-bookmark-empty.svg";
 
-const StyledButton = styled.button`
+export const StyledButton = styled.button`
   font-family: inherit;
   font-weight: inherit;
   background-color: ${color.redprimary};
@@ -21,7 +21,7 @@ const StyledButton = styled.button`
   }
 `;
 
-const StyledOutlinedButton = styled(StyledButton)`
+export const StyledOutlinedButton = styled(StyledButton)`
   background-color: transparent;
   border: solid 1px ${color.grayishblue};
   display: flex;
@@ -34,7 +34,7 @@ const StyledOutlinedButton = styled(StyledButton)`
   }
 `;
 
-const StyledBookmarkButton = styled.button`
+export const StyledBookmarkButton = styled.button`
   background: no-repeat
     url(${({ isBookmarked }) => isBookmarked ? bookmarkIconFull : bookmarkIconEmpty});
   background-color: rgba(16, 20, 30, 0.6);
@@ -53,7 +53,7 @@ const StyledBookmarkButton = styled.button`
   right: 1.5em;
 `;
 
-const StyledPlayButton = styled.button`
+export const StyledPlayButton = styled.button`
   font-size: 1.15rem;
   height: fit-content;
   background-color: rgba(255, 255, 255, 0.2);
@@ -74,9 +74,9 @@ const StyledPlayButton = styled.button`
   }
 `;
 
-export {
-  StyledButton,
-  StyledOutlinedButton,
-  StyledBookmarkButton,
-  StyledPlayButton,
-};
+export const StyledLogoutButton = styled.div`
+  background-color: none;
+  border: none;
+  margin-block: 2em;
+  cursor: pointer;
+`;
