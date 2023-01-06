@@ -1,4 +1,3 @@
-import { LogoutButton } from "../../components/Button/Button";
 import Searchbar from "../../components/SearchBar/Searchbar";
 import { RegularSection } from "../Home/Home";
 import StyledBookmarksView from "./Bookmarks.styles";
@@ -11,7 +10,6 @@ const Bookmarks = () => {
     >
       <Searchbar keyword="bookmarked shows"/>
       <RegularSection heading="Bookmarked Movies"/>
-      <LogoutButton/>
       <RegularSection heading="Bookmarked TV Series"/>
     </StyledBookmarksView>
   );
