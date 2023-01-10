@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 
 import * as ROUTES from "../../constants/routes";
 
@@ -9,10 +13,6 @@ import TextField from "../TextField/TextField";
 import StyledAuthForm from "./AuthForm.styles";
 
 import googleIcon from "../../assets/Google.svg";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
 import { AuthContext } from "../../services/firebase/auth";
 
 const AuthForm = ({ heading, setStatus, setErrMessage }) => {
