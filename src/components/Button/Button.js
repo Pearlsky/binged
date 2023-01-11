@@ -9,10 +9,10 @@ import {
   StyledPrimaryButton,
 } from "./Button.styles";
 
-export const TextButton = ({ text, type = "" }) => {
+export const TextButton = ({loading, text, type = "" }) => {
   return (
     <StyledPrimaryButton type={type}>
-      <FaSpinner />
+      <span><FaSpinner loading={loading} /></span>
       <span>{text}</span>
     </StyledPrimaryButton>
   );
