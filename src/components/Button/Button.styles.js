@@ -14,9 +14,6 @@ export const StyledButton = styled.button`
   margin-block: 2.5em 1em;
   width: 100%;
 
-  span {
-  }
-
   :hover {
     background-color: ${color.white};
     color: ${color.darkblue};
@@ -29,8 +26,12 @@ export const StyledPrimaryButton = styled(StyledButton)`
   align-items: center;
   background-color: ${color.redprimary};
 
+  span:first-of-type {
+    display: ${({ loading }) => (loading ? "block" : "none")};
+  }
+
   span {
-    margin-left: .5em;
+    margin-left: 0.5em;
   }
 `;
 
