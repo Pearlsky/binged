@@ -6,7 +6,6 @@ import bookmarkIconEmpty from "../../assets/icon-bookmark-empty.svg";
 export const StyledButton = styled.button`
   font-family: inherit;
   font-weight: inherit;
-  background-color: ${color.redprimary};
   border: none;
   border-radius: 5px;
   color: ${color.white};
@@ -15,9 +14,23 @@ export const StyledButton = styled.button`
   margin-block: 2.5em 1em;
   width: 100%;
 
+  span {
+  }
+
   :hover {
     background-color: ${color.white};
     color: ${color.darkblue};
+  }
+`;
+
+export const StyledPrimaryButton = styled(StyledButton)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${color.redprimary};
+
+  span {
+    margin-left: .5em;
   }
 `;
 
@@ -36,7 +49,8 @@ export const StyledOutlinedButton = styled(StyledButton)`
 
 export const StyledBookmarkButton = styled.button`
   background: no-repeat
-    url(${({ isBookmarked }) => isBookmarked ? bookmarkIconFull : bookmarkIconEmpty});
+    url(${({ isBookmarked }) =>
+      isBookmarked ? bookmarkIconFull : bookmarkIconEmpty});
   background-color: rgba(16, 20, 30, 0.6);
   border: none;
   background-position: center;
@@ -74,8 +88,8 @@ export const StyledPlayButton = styled.button`
   }
 `;
 
-export const StyledLogoutButton = styled.div`
-  background-color: none;
+export const StyledLogoutButton = styled.button`
+  background-color: transparent;
   border: none;
   margin-block: 2em;
   cursor: pointer;
