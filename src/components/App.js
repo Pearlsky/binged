@@ -76,7 +76,7 @@ function App() {
         />
       </Routes>
 
-      <StyledAppContainer>
+      <StyledAppContainer isLoggedIn={isLoggedIn}>
         {isLoggedIn && <NavBar />}
         <Routes>
           <Route
