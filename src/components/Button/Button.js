@@ -1,15 +1,21 @@
 import { useState } from "react";
+import { FaSpinner } from "react-icons/fa";
 import Icon from "../Icon/Icon";
 import {
   StyledBookmarkButton,
-  StyledButton,
   StyledLogoutButton,
   StyledOutlinedButton,
   StyledPlayButton,
+  StyledPrimaryButton,
 } from "./Button.styles";
 
 export const TextButton = ({ text, type = "" }) => {
-  return <StyledButton type={type}>{text}</StyledButton>;
+  return (
+    <StyledPrimaryButton type={type}>
+      <FaSpinner />
+      <span>{text}</span>
+    </StyledPrimaryButton>
+  );
 };
 
 export const OutlinedButton = ({ text = "", icon, type = "" }) => {
