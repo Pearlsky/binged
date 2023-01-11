@@ -24,6 +24,8 @@ const AuthForm = ({ heading, setStatus, setErrMessage }) => {
   const [passwordErr, setPasswordErr] = useState(false);
   const [repeatPasswordErr, setRepeatPasswordErr] = useState(false);
 
+  const [authLoading, setAuthLoading] = useState(false);
+
   const isSignUpValid =
     email !== "" &&
     password !== "" &&
@@ -38,6 +40,7 @@ const AuthForm = ({ heading, setStatus, setErrMessage }) => {
 
   const submitHandler = async (e) => {
     setStatus("");
+    setAuthLoading(true);
 
     try {
       e.preventDefault();
@@ -50,11 +53,13 @@ const AuthForm = ({ heading, setStatus, setErrMessage }) => {
       if (heading === "login" && isLoginValid) {
         await signInWithEmailAndPassword(auth, email, password);
         setStatus("success");
+        setAuthLoading(false);
         navigate(ROUTES.HOME);
       }
       if (heading === "signup" && isSignUpValid) {
         await createUserWithEmailAndPassword(auth, email, password);
         setStatus("success");
+        setAuthLoading(false);
         navigate(ROUTES.HOME);
       }
     } catch (error) {
@@ -87,6 +92,7 @@ const AuthForm = ({ heading, setStatus, setErrMessage }) => {
         />
       )}
       <TextButton
+        loading={authLoading}
         type="submit"
         text={
           heading === "login" ? "Login to your account" : "Create an account"
