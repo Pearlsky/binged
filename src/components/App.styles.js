@@ -4,6 +4,6 @@ import { breakpoints as breakpoint } from "../utils/variables";
 export const StyledAppContainer = styled.div`
   @media (${breakpoint.laptop}) {
     display: flex;
-    height: 100%;
+    height: ${({isLoggedIn}) => isLoggedIn ? "100%" : 0};
   }
 `;
