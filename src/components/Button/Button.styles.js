@@ -1,7 +1,5 @@
 import styled, { keyframes } from "styled-components";
 import { colors as color, weights as weight } from "../../utils/variables";
-import bookmarkIconFull from "../../assets/icon-bookmark-full.svg";
-import bookmarkIconEmpty from "../../assets/icon-bookmark-empty.svg";
 
 export const StyledButton = styled.button`
   font-family: inherit;
@@ -55,23 +53,26 @@ export const StyledOutlinedButton = styled(StyledButton)`
 `;
 
 export const StyledBookmarkButton = styled.button`
-  background: no-repeat
-    url(${({ isBookmarked }) =>
-      isBookmarked ? bookmarkIconFull : bookmarkIconEmpty});
   background-color: rgba(16, 20, 30, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: none;
-  background-position: center;
-  background-size: 12px;
   width: 2.5em;
   height: 2.5em;
-  text-indent: 4em;
-  white-space: nowrap;
-  overflow: hidden;
-  padding: 1em;
   border-radius: 50%;
   position: absolute;
   top: 1em;
   right: 1.5em;
+
+  :hover {
+    background-color: ${color.white};
+  }
+
+  :hover path {
+    stroke: #000;
+    fill: ${color.white};
+  }
 `;
 
 export const StyledPlayButton = styled.button`
