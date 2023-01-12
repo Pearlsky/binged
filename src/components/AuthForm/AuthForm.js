@@ -40,7 +40,6 @@ const AuthForm = ({ heading, setStatus, setErrMessage }) => {
 
   const submitHandler = async (e) => {
     setStatus("");
-    setAuthLoading(true);
 
     try {
       e.preventDefault();
@@ -51,12 +50,14 @@ const AuthForm = ({ heading, setStatus, setErrMessage }) => {
         : setRepeatPasswordErr(false);
 
       if (heading === "login" && isLoginValid) {
+        setAuthLoading(true);
         await signInWithEmailAndPassword(auth, email, password);
         setStatus("success");
         setAuthLoading(false);
         navigate(ROUTES.HOME);
       }
       if (heading === "signup" && isSignUpValid) {
+        setAuthLoading(true);
         await createUserWithEmailAndPassword(auth, email, password);
         setStatus("success");
         setAuthLoading(false);
@@ -64,6 +65,7 @@ const AuthForm = ({ heading, setStatus, setErrMessage }) => {
       }
     } catch (error) {
       setStatus("err");
+      setAuthLoading(false);
       setErrMessage(errorStringify(error.message));
     }
   };
@@ -92,11 +94,11 @@ const AuthForm = ({ heading, setStatus, setErrMessage }) => {
         />
       )}
       <TextButton
-        loading={authLoading}
         type="submit"
         text={
           heading === "login" ? "Login to your account" : "Create an account"
         }
+        isloading={authLoading}
       />
       <OutlinedButton
         icon={googleIcon}
