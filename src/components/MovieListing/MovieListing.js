@@ -7,14 +7,19 @@ import StyledMovieListing, {
   StyledTrendingListing,
 } from "./MovieListing.styles";
 
-const MovieListing = ({title, year, category, rating, thumbnail}) => {
+const MovieListing = ({ title, year, category, rating, thumbnail }) => {
   return (
     <StyledMovieListing>
       <StyledMovieThumbnail thumbnail={thumbnail}>
         <BookmarkButton />
         <PlayButton />
       </StyledMovieThumbnail>
-      <MovieDetails title={title} year={year} category={category} rating={rating} />
+      <MovieDetails
+        title={title}
+        year={year}
+        category={category}
+        rating={rating}
+      />
     </StyledMovieListing>
   );
 };
