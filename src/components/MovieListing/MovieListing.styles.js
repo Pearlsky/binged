@@ -1,5 +1,9 @@
 import styled from "styled-components";
-import { breakpoints as breakpoint, colors as color, weights as weight } from "../../utils/variables";
+import {
+  breakpoints as breakpoint,
+  colors as color,
+  weights as weight,
+} from "../../utils/variables";
 
 import movieCategoryIcon from "../../assets/icon-category-movie.svg";
 import tvseriesCategoryIcon from "../../assets/icon-category-tv.svg";
@@ -24,11 +28,28 @@ export const StyledMovieThumbnail = styled.div`
   border-radius: 10px;
   flex-basis: 75%;
   position: relative;
+  background: url(${({ thumbnail }) => thumbnail.small});
+  background-position: center;
+  background-size: cover;
   background-color: ${color.grayishblue};
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media(${breakpoint.tablet}) {
+    background: url(${({ thumbnail }) => thumbnail.medium});
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  @media(${breakpoint.laptop}) {
+    background: url(${({ thumbnail }) => thumbnail.large});
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
 
   > div {
     position: absolute;
@@ -79,7 +100,8 @@ export const StyledMovieSubDetails = styled.div`
 
     > span {
       background: no-repeat
-        url(${({ category }) => category === "Movie" ? movieCategoryIcon : tvseriesCategoryIcon});
+        url(${({ category }) =>
+          category === "Movie" ? movieCategoryIcon : tvseriesCategoryIcon});
       display: block;
       height: 1em;
       width: 1em;
