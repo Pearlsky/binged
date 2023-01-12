@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { colors as color, weights as weight } from "../../utils/variables";
 import bookmarkIconFull from "../../assets/icon-bookmark-full.svg";
 import bookmarkIconEmpty from "../../assets/icon-bookmark-empty.svg";
@@ -20,14 +20,20 @@ export const StyledButton = styled.button`
   }
 `;
 
+export const spin = keyframes`
+  100% {
+    transform: rotate(360deg);
+  }
+`;
+
 export const StyledPrimaryButton = styled(StyledButton)`
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: ${color.redprimary};
 
-  span:first-of-type {
-    display: ${({ loading }) => (loading ? "block" : "none")};
+  svg {
+    animation: 1s linear infinite ${spin};
   }
 
   span {
