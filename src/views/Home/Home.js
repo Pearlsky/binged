@@ -45,6 +45,7 @@ export const RegularSection = ({ heading, listings }) => {
               category={item.category}
               rating={item.rating}
               year={item.year}
+              thumbnail={item.thumbnail.regular}
             />
           ))}
       </StyledListingGrid>
