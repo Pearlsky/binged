@@ -6,6 +6,7 @@ import {
 
 const StyledHomeView = styled.section`
   width: 100%;
+  overflow: hidden scroll;
   padding-inline: 1em;
   padding-block: 1em 1.5em;
   @media (${breakpoint.laptop}) {
