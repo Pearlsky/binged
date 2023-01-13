@@ -78,7 +78,7 @@ export const StyledBookmarkButton = styled.button`
 export const StyledPlayButton = styled.button`
   font-size: 1.15rem;
   height: fit-content;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.3);
   border-radius: 30px;
   border: none;
   color: ${color.white};
