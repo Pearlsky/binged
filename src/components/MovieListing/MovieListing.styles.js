@@ -43,7 +43,6 @@ export const StyledMovieThumbnail = styled.div`
     background-size: cover;
     background-repeat: no-repeat;
     background-color: #000;
-
   }
 
   @media (${breakpoint.laptop}) {
@@ -77,6 +76,9 @@ export const StyledMovieTitle = styled.h3`
 
   @media (${breakpoint.tablet}) {
     font-size: 1.1rem;
+  }
+  @media (${breakpoint.laptop}) {
+    font-size: 1.15rem;
   }
 `;
 
