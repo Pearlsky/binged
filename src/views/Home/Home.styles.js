@@ -44,7 +44,7 @@ export const StyledListingGrid = styled.section`
   @media (${breakpoint.laptop}) {
     grid-template-columns: repeat(4, 1fr);
     grid-auto-rows: 20rem;
-    gap: 2em;
+    gap: .5em 2em;
   }
 `;
 
