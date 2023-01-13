@@ -31,24 +31,27 @@ export const StyledMovieThumbnail = styled.div`
   background: url(${({ thumbnail }) => thumbnail.small});
   background-position: center;
   background-size: cover;
-  background-color: ${color.grayishblue};
+  background-color: #000;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  @media(${breakpoint.tablet}) {
+  @media (${breakpoint.tablet}) {
     background: url(${({ thumbnail }) => thumbnail.medium});
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    background-color: #000;
+
   }
 
-  @media(${breakpoint.laptop}) {
+  @media (${breakpoint.laptop}) {
     background: url(${({ thumbnail }) => thumbnail.large});
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    background-color: rgba(0, 0, 0, 0.5);
   }
 
   > div {
@@ -77,7 +80,9 @@ export const StyledMovieTitle = styled.h3`
   }
 `;
 
-export const StyledMovieDetails = styled.div``;
+export const StyledMovieDetails = styled.div`
+  flex-basis: 25%;
+`;
 
 export const StyledMovieSubDetails = styled.div`
   display: flex;
