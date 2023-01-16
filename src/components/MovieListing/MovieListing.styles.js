@@ -28,7 +28,7 @@ export const StyledMovieThumbnail = styled.div`
   border-radius: 10px;
   flex-basis: 75%;
   position: relative;
-  background: url(${({ thumbnail }) => thumbnail.small});
+  background: url(${({ small }) => small});
   background-position: center;
   background-size: cover;
   background-color: #000;
@@ -38,7 +38,7 @@ export const StyledMovieThumbnail = styled.div`
   align-items: center;
 
   @media (${breakpoint.tablet}) {
-    background: url(${({ thumbnail }) => thumbnail.medium});
+    background: url(${({ medium }) => medium});
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -46,7 +46,7 @@ export const StyledMovieThumbnail = styled.div`
   }
 
   @media (${breakpoint.laptop}) {
-    background: url(${({ thumbnail }) => thumbnail.large});
+    background: url(${({ large }) => large});
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
