@@ -1,4 +1,4 @@
-import { Routes, Route} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { useState, useContext } from "react";
 import { AuthContext } from "../services/firebase/auth";
 
@@ -41,6 +41,7 @@ function App() {
 
   onAuthStateChanged(auth, (currentUser) => {
     if (currentUser) {
+      sessionStorage.setItem("authUser", JSON.stringify(currentUser));
       setUser(currentUser);
       currentUser &&
         createUserAndUserData(
@@ -49,7 +50,8 @@ function App() {
           currentUser.email
         );
     } else {
-      setUser();
+      sessionStorage.removeItem("authUser");
+      setUser("");
     }
   });
 
