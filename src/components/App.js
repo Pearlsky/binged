@@ -3,7 +3,7 @@ import { useState, useContext } from "react";
 import { AuthContext } from "../services/firebase/auth";
 
 import GlobalStyles from "../utils/Global.styles";
-import { StyledAppContainer } from "./App.styles";
+import { StyledAppContainer, StyledDefaultHomePage } from "./App.styles";
 import * as ROUTES from "../constants/routes";
 
 import Alert from "./Alert/Alert";
@@ -59,6 +59,10 @@ function App() {
     <>
       <GlobalStyles />
       <Alert type={status} errMessage={errMessage} />
+      {!isLoggedIn && (
+        <StyledDefaultHomePage>
+        </StyledDefaultHomePage>
+      )}
       <Routes>
         {!isLoggedIn && (
           <>
