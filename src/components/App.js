@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route} from "react-router-dom";
 import { useState, useContext } from "react";
 import { AuthContext } from "../services/firebase/auth";
 
@@ -40,13 +40,17 @@ function App() {
   };
 
   onAuthStateChanged(auth, (currentUser) => {
-    setUser(currentUser);
-    currentUser &&
-      createUserAndUserData(
-        currentUser.uid,
-        currentUser.displayName,
-        currentUser.email
-      );
+    if (currentUser) {
+      setUser(currentUser);
+      currentUser &&
+        createUserAndUserData(
+          currentUser.uid,
+          currentUser.displayName,
+          currentUser.email
+        );
+    } else {
+      setUser();
+    }
   });
 
   return (
@@ -54,26 +58,30 @@ function App() {
       <GlobalStyles />
       <Alert type={status} errMessage={errMessage} />
       <Routes>
-        <Route
-          path={ROUTES.SIGN_UP}
-          element={
-            <AuthPage
-              heading="signup"
-              setStatus={setStatus}
-              setErrMessage={setErrMessage}
+        {!isLoggedIn && (
+          <>
+            <Route
+              path={ROUTES.SIGN_UP}
+              element={
+                <AuthPage
+                  heading="signup"
+                  setStatus={setStatus}
+                  setErrMessage={setErrMessage}
+                />
+              }
             />
-          }
-        />
-        <Route
-          path={ROUTES.LOGIN}
-          element={
-            <AuthPage
-              heading="login"
-              setStatus={setStatus}
-              setErrMessage={setErrMessage}
+            <Route
+              path={ROUTES.LOGIN}
+              element={
+                <AuthPage
+                  heading="login"
+                  setStatus={setStatus}
+                  setErrMessage={setErrMessage}
+                />
+              }
             />
-          }
-        />
+          </>
+        )}
       </Routes>
 
       <StyledAppContainer isLoggedIn={isLoggedIn}>
