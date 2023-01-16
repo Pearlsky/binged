@@ -1,3 +1,6 @@
+import { getDownloadURL, ref } from "firebase/storage";
+import { useEffect, useState } from "react";
+import storage from "../../services/firebase/storage";
 import { BookmarkButton, PlayButton } from "../Button/Button";
 import StyledMovieListing, {
   StyledMovieDetails,
@@ -8,9 +11,40 @@ import StyledMovieListing, {
 } from "./MovieListing.styles";
 
 const MovieListing = ({ title, year, category, rating, thumbnail }) => {
+  const [large, setLarge] = useState();
+  const [medium, setMedium] = useState();
+  const [small, setSmall] = useState();
+
+  const itemStorageRefL = ref(storage, thumbnail.large);
+  const itemStorageRefM = ref(storage, thumbnail.medium);
+  const itemStorageRefS = ref(storage, thumbnail.small);
+
+  useEffect(() => {
+    const getStorageImages = async () => {
+      try {
+        const urlLarge = await getDownloadURL(itemStorageRefL);
+        const urlMedium = await getDownloadURL(itemStorageRefM);
+        const urlSmall = await getDownloadURL(itemStorageRefS);
+
+        urlLarge && setLarge(urlLarge);
+        urlMedium && setMedium(urlMedium);
+        urlSmall && setSmall(urlSmall);
+      } catch (error) {
+        console.error(`${error.type}: ${error.message}`);
+      }
+    };
+
+    getStorageImages();
+  }, [itemStorageRefL, itemStorageRefM, itemStorageRefS]);
+
   return (
     <StyledMovieListing>
-      <StyledMovieThumbnail thumbnail={thumbnail}>
+      <StyledMovieThumbnail
+        thumbnail={thumbnail}
+        large={large}
+        medium={medium}
+        small={small}
+      >
         <BookmarkButton />
         <PlayButton />
       </StyledMovieThumbnail>
