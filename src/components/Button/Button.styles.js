@@ -1,5 +1,11 @@
 import styled, { keyframes } from "styled-components";
-import { colors as color, weights as weight } from "../../utils/variables";
+import { colors as color, weights as weight } from "../../style-utils/variables";
+
+export const spin = keyframes`
+  100% {
+    transform: rotate(360deg);
+  }
+`;
 
 export const StyledButton = styled.button`
   font-family: inherit;
@@ -18,17 +24,23 @@ export const StyledButton = styled.button`
   }
 `;
 
-export const spin = keyframes`
-  100% {
-    transform: rotate(360deg);
+export const StyledPrimaryButton = styled(StyledButton)`
+  background-color: ${color.redprimary};
+`;
+
+export const StyledOutlinedButton = styled(StyledButton)`
+  background-color: transparent;
+  border: solid 1px ${color.grayishblue};
+
+  hover {
+    color: ${color.white};
   }
 `;
 
-export const StyledPrimaryButton = styled(StyledButton)`
+export const StyledIconTextButton = styled(StyledPrimaryButton)`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${color.redprimary};
 
   svg {
     animation: 1s linear infinite ${spin};
@@ -39,9 +51,7 @@ export const StyledPrimaryButton = styled(StyledButton)`
   }
 `;
 
-export const StyledOutlinedButton = styled(StyledButton)`
-  background-color: transparent;
-  border: solid 1px ${color.grayishblue};
+export const StyledIconTextBtnOutlined = styled(StyledOutlinedButton)`
   display: flex;
   margin-block: 0 1.5em;
   justify-content: center;
