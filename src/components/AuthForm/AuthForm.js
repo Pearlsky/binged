@@ -8,7 +8,7 @@ import {
 
 import * as ROUTES from "../../constants/routes";
 
-import { TextButton, OutlinedButton } from "../Button/Button";
+import { IconTextButton, IconTextBtnOutlined } from "../Button/Button";
 import TextField from "../TextField/TextField";
 import StyledAuthForm from "./AuthForm.styles";
 
@@ -93,14 +93,14 @@ const AuthForm = ({ heading, setStatus, setErrMessage }) => {
           setInput={setRepeatPassword}
         />
       )}
-      <TextButton
+      <IconTextButton
         type="submit"
         text={
           heading === "login" ? "Login to your account" : "Create an account"
         }
         isloading={authLoading}
       />
-      <OutlinedButton
+      <IconTextBtnOutlined
         icon={googleIcon}
         text={heading === "login" ? "Login with Google" : "Sign up with Google"}
         type="button"
