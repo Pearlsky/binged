@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import { weights as weight } from "../../utils/variables";
+import { weights as weight } from "../../style-utils/variables";
 
 const AlertAppear = keyframes`
   0% {
