@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { colors as color } from "../../utils/variables";
+import { colors as color } from "../../style-utils/variables";
 
 const StyledTextField = styled.label`
   display: block;
