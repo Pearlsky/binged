@@ -31,6 +31,7 @@ export const StyledPrimaryButton = styled(StyledButton)`
 export const StyledOutlinedButton = styled(StyledButton)`
   background-color: transparent;
   border: solid 1px ${color.grayishblue};
+  margin-block: 1em;
 
   hover {
     color: ${color.white};
