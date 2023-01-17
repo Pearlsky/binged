@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { colors as color } from "../../utils/variables";
-import { breakpoints as breakpoint } from "../../utils/variables";
+import { colors as color } from "../../style-utils/variables";
+import { breakpoints as breakpoint } from "../../style-utils/variables";
 
 export const StyledNavContainer = styled.div`
   @media (${breakpoint.mobile}) {
