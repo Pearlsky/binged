@@ -3,27 +3,50 @@ import { FaSpinner } from "react-icons/fa";
 import Icon from "../Icon/Icon";
 import {
   StyledBookmarkButton,
+  StyledButton,
+  StyledIconTextBtnOutlined,
+  StyledIconTextButton,
   StyledLogoutButton,
   StyledOutlinedButton,
   StyledPlayButton,
   StyledPrimaryButton,
 } from "./Button.styles";
 
-export const TextButton = ({ text, type = "", isloading }) => {
+export const TextButton = ({ text }) => {
   return (
-    <StyledPrimaryButton type={type}>
-      <span>{isloading && <FaSpinner />}</span>
+    <StyledButton>
+      <span>{text}</span>
+    </StyledButton>
+  );
+};
+
+export const TextButtonPrimary = ({ text }) => {
+  return (
+    <StyledPrimaryButton>
       <span>{text}</span>
     </StyledPrimaryButton>
   );
 };
 
-export const OutlinedButton = ({ text = "", icon, type = "" }) => {
+export const IconTextButton = ({ text, type = "", isloading }) => {
   return (
-    <StyledOutlinedButton type={type}>
+    <StyledIconTextButton type={type}>
+      <span>{isloading && <FaSpinner />}</span>
+      <span>{text}</span>
+    </StyledIconTextButton>
+  );
+};
+
+export const OutlinedButton = ({ text = "", type = "" }) => {
+  return <StyledOutlinedButton type={type}>{text}</StyledOutlinedButton>;
+};
+
+export const IconTextBtnOutlined = ({ text = "", icon, type = "" }) => {
+  return (
+    <StyledIconTextBtnOutlined type={type}>
       <Icon icon={icon} />
       {text}
-    </StyledOutlinedButton>
+    </StyledIconTextBtnOutlined>
   );
 };
 
