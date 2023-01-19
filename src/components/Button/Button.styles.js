@@ -1,5 +1,8 @@
 import styled, { keyframes } from "styled-components";
-import { colors as color, weights as weight } from "../../style-utils/variables";
+import {
+  colors as color,
+  weights as weight,
+} from "../../style-utils/variables";
 
 export const spin = keyframes`
   100% {
@@ -112,4 +115,18 @@ export const StyledLogoutButton = styled.button`
   border: none;
   margin-block: 2em;
   cursor: pointer;
+`;
+
+export const StyledShowPassword = styled.div`
+  text-align: right;
+
+  button {
+    background-color: transparent;
+    color: ${color.redprimary};
+    font-weight: ${weight.light};
+    font-family: "Outfit", sans-serif;
+    border: none;
+    margin-block: 0.7em 0;
+    padding-inline: 0;
+  }
 `;
