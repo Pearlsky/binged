@@ -10,7 +10,7 @@ const DefaultHome = () => {
   return (
     <StyledDefaultHomePage>
       <div>
-        <Link to={ROUTES.LOGIN} strict>
+        <Link to={ROUTES.LOGIN}>
           <TextButtonPrimary text="Login" type="button" />
         </Link>
         <Link to={ROUTES.SIGN_UP}>
