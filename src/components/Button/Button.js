@@ -10,6 +10,7 @@ import {
   StyledOutlinedButton,
   StyledPlayButton,
   StyledPrimaryButton,
+  StyledShowPassword,
 } from "./Button.styles";
 
 export const TextButton = ({ text }) => {
@@ -144,5 +145,16 @@ export const LogoutButton = ({ onClick }) => {
         </defs>
       </svg>
     </StyledLogoutButton>
+  );
+};
+
+export const ShowPasswordBtn = ({ isVisible, setIsVisible }) => {
+  const showPasswordHandler = (e) => {
+    setIsVisible(!isVisible);
+  };
+  return (
+    <StyledShowPassword>
+      <button type="button" onClick={showPasswordHandler}>Show password</button>
+    </StyledShowPassword>
   );
 };
