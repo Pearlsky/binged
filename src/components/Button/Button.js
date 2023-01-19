@@ -154,7 +154,7 @@ export const ShowPasswordBtn = ({ isVisible, setIsVisible }) => {
   };
   return (
     <StyledShowPassword>
-      <button type="button" onClick={showPasswordHandler}>Show password</button>
+      <button type="button" onClick={showPasswordHandler}>{isVisible ? "Hide password" : "Show password"}</button>
     </StyledShowPassword>
   );
 };
