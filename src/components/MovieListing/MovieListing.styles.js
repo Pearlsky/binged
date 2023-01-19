@@ -31,7 +31,7 @@ export const StyledMovieThumbnail = styled.div`
   background: url(${({ small }) => small});
   background-position: center;
   background-size: cover;
-  background-color: #000;
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -42,7 +42,7 @@ export const StyledMovieThumbnail = styled.div`
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    background-color: #000;
+    background-color: rgba(0, 0, 0, 0.5);
   }
 
   @media (${breakpoint.laptop}) {
