@@ -8,7 +8,11 @@ import {
 
 import * as ROUTES from "../../constants/routes";
 
-import { IconTextButton, IconTextBtnOutlined } from "../Button/Button";
+import {
+  IconTextButton,
+  IconTextBtnOutlined,
+  ShowPasswordBtn,
+} from "../Button/Button";
 import TextField from "../TextField/TextField";
 import StyledAuthForm from "./AuthForm.styles";
 
@@ -24,6 +28,7 @@ const AuthForm = ({ heading, setStatus, setErrMessage }) => {
   const [passwordErr, setPasswordErr] = useState(false);
   const [repeatPasswordErr, setRepeatPasswordErr] = useState(false);
 
+  const [passIsVisible, setPassIsVisible] = useState(false);
   const [authLoading, setAuthLoading] = useState(false);
 
   const isSignUpValid =
@@ -84,6 +89,7 @@ const AuthForm = ({ heading, setStatus, setErrMessage }) => {
         placeholder="Password"
         error={passwordErr}
         setInput={setPassword}
+        isVisible={passIsVisible}
       />
       {heading === "signup" && (
         <TextField
@@ -91,6 +97,13 @@ const AuthForm = ({ heading, setStatus, setErrMessage }) => {
           placeholder="Repeat Password"
           error={repeatPasswordErr}
           setInput={setRepeatPassword}
+          isVisible={passIsVisible}
+        />
+      )}
+      {password && (
+        <ShowPasswordBtn
+          isVisible={passIsVisible}
+          setIsVisible={setPassIsVisible}
         />
       )}
       <IconTextButton
