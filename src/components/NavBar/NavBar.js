@@ -1,11 +1,7 @@
-import { signOut } from "firebase/auth";
-import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 
 import * as ROUTES from "../../constants/routes";
-import { AuthContext } from "../../services/firebase/auth";
 import Avatar from "../Avatar/Avatar";
-import { LogoutButton } from "../Button/Button";
 import Logo from "../Logo/Logo";
 import StyledNavBar, {
   StyledNavContainer,
@@ -13,18 +9,12 @@ import StyledNavBar, {
 } from "./NavBar.styles";
 
 const NavBar = () => {
-  const { auth } = useContext(AuthContext);
-  const logoutHandler = () => {
-    signOut(auth);
-  };
-
   return (
     <StyledNavContainer>
       <StyledNavBar aria-label="Tab navigation" role="region">
         <Logo />
         <NavTabs />
         <Avatar />
-        <LogoutButton onClick={logoutHandler} />
       </StyledNavBar>
     </StyledNavContainer>
   );
