@@ -113,8 +113,17 @@ export const StyledPlayButton = styled.button`
 export const StyledLogoutButton = styled.button`
   background-color: transparent;
   border: none;
-  margin-block: 2em;
+  font-family: "Outfit", sans-serif;
+  font-weight: ${weight.light};
+  font-size: 1em;
+  color: ${color.redprimary};
+  display: flex;
+  align-items: center;
   cursor: pointer;
+
+  span {
+    margin-left: 0.5em;
+  }
 `;
 
 export const StyledShowPassword = styled.div`
