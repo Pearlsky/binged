@@ -106,8 +106,8 @@ export const LogoutButton = ({ onClick }) => {
   return (
     <StyledLogoutButton onClick={onClick}>
       <svg
-        width="30"
-        height="30"
+        width="18"
+        height="18"
         viewBox="0 0 20 20"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -144,6 +144,7 @@ export const LogoutButton = ({ onClick }) => {
           </clipPath>
         </defs>
       </svg>
+      <span>Logout</span>
     </StyledLogoutButton>
   );
 };
