@@ -23,10 +23,6 @@ const StyledNavBar = styled.div`
   padding-block: 1em;
   background-color: ${color.semidarkblue};
 
-  button {
-    display: none;
-  }
-
   @media (${breakpoint.mobile}) {
     border-radius: 20px;
   }
@@ -38,10 +34,6 @@ const StyledNavBar = styled.div`
     align-items: center;
     justify-content: unset;
     padding-block: 1.5em;
-
-    button {
-      display: block;
-    }
   }
 `;
 
