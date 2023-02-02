@@ -4,8 +4,9 @@ import { useNavigate } from "react-router-dom";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signInWithPopup,
 } from "firebase/auth";
-
+import { GProvider } from "../../services/firebase/auth";
 import * as ROUTES from "../../constants/routes";
 
 import {
@@ -23,13 +24,14 @@ const AuthForm = ({ heading, setStatus, setErrMessage }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
-
   const [emailErr, setEmailErr] = useState(false);
   const [passwordErr, setPasswordErr] = useState(false);
   const [repeatPasswordErr, setRepeatPasswordErr] = useState(false);
-
   const [passIsVisible, setPassIsVisible] = useState(false);
   const [authLoading, setAuthLoading] = useState(false);
+
+  const navigate = useNavigate();
+  const { auth } = useContext(AuthContext);
 
   const isSignUpValid =
     email !== "" &&
@@ -37,9 +39,6 @@ const AuthForm = ({ heading, setStatus, setErrMessage }) => {
     repeatPassword !== "" &&
     repeatPassword === password;
   const isLoginValid = email !== "" && password !== "";
-
-  const navigate = useNavigate();
-  const { auth } = useContext(AuthContext);
 
   const errorStringify = (string) => string.slice(22, -2).replaceAll("-", " ");
 
@@ -72,6 +71,18 @@ const AuthForm = ({ heading, setStatus, setErrMessage }) => {
       setStatus("err");
       setAuthLoading(false);
       setErrMessage(errorStringify(error.message));
+    }
+  };
+
+  const signInWGoogleHandler = async (e) => {
+    setStatus("");
+
+    try {
+      await signInWithPopup(auth, GProvider);
+      setStatus("success");
+      navigate(ROUTES.HOME);
+    } catch (error) {
+      setStatus("err");
     }
   };
 
@@ -117,6 +128,7 @@ const AuthForm = ({ heading, setStatus, setErrMessage }) => {
         icon={googleIcon}
         text={heading === "login" ? "Login with Google" : "Sign up with Google"}
         type="button"
+        onClick={signInWGoogleHandler}
       />
       {heading === "login" ? (
         <p>
