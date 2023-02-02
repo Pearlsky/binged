@@ -42,9 +42,9 @@ export const OutlinedButton = ({ text = "", type = "" }) => {
   return <StyledOutlinedButton type={type}>{text}</StyledOutlinedButton>;
 };
 
-export const IconTextBtnOutlined = ({ text = "", icon, type = "" }) => {
+export const IconTextBtnOutlined = ({ text = "", icon, type = "", onClick }) => {
   return (
-    <StyledIconTextBtnOutlined type={type}>
+    <StyledIconTextBtnOutlined type={type} onClick={onClick}>
       <Icon icon={icon} />
       {text}
     </StyledIconTextBtnOutlined>
