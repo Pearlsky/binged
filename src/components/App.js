@@ -26,7 +26,7 @@ function App() {
   const { auth, isLoggedIn, setUser } = useContext(AuthContext);
   const db = useContext(DbContext);
 
-  const createUserAndUserData = (userId, name, email) => {
+  const createUserAndUserData = (userId, name, email, photoURL) => {
     const listingsRef = ref(db, "listings");
     const userRef = ref(db, "users/" + userId);
 
@@ -35,6 +35,7 @@ function App() {
       set(userRef, {
         username: name,
         email: email,
+        photo: photoURL,
         userListing: data,
       });
     });
@@ -48,7 +49,8 @@ function App() {
         createUserAndUserData(
           currentUser.uid,
           currentUser.displayName,
-          currentUser.email
+          currentUser.email,
+          currentUser.photoURL
         );
     } else {
       sessionStorage.removeItem("authUser");
