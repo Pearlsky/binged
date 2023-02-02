@@ -1,8 +1,9 @@
-import { getAuth } from "firebase/auth";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { createContext, useState } from "react";
 import firebaseApp from "./firebase";
 
 const auth = getAuth(firebaseApp);
+
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
@@ -18,4 +19,6 @@ const AuthProvider = ({ children }) => {
   );
 };
 
-export { AuthContext, AuthProvider };
+const GProvider = new GoogleAuthProvider();
+
+export { AuthContext, AuthProvider, GProvider};
