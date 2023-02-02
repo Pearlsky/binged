@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
 
 import * as ROUTES from "../../constants/routes";
 import Avatar from "../Avatar/Avatar";
@@ -7,14 +8,22 @@ import StyledNavBar, {
   StyledNavContainer,
   StyledNavTabs,
 } from "./NavBar.styles";
+import { AuthContext } from "../../services/firebase/auth";
 
 const NavBar = () => {
+  const [avatarImg, setAvatarImg] = useState("");
+  const { user } = useContext(AuthContext);
+
+  useEffect(() => {
+    setAvatarImg(user?.photoURL);
+  }, [setAvatarImg, user]);
+
   return (
     <StyledNavContainer>
       <StyledNavBar aria-label="Tab navigation" role="region">
         <Logo />
         <NavTabs />
-        <Avatar />
+        <Avatar avatarImg={avatarImg} />
       </StyledNavBar>
     </StyledNavContainer>
   );
