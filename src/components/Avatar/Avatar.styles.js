@@ -17,12 +17,16 @@ const StyledAvatar = styled.button`
   font-family: "Outfit", sans-serif;
   font-weight: ${weight.light};
   font-size: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-inline: 0;
   position: relative;
   z-index: 1;
   text-align: left;
 
   :hover {
-    box-shadow: 0 0 5px 5px #5E6E96;
+    box-shadow: 0 0 5px 5px #5e6e96;
   }
 
   img {
