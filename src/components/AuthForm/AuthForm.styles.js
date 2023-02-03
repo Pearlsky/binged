@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors as color, weights as weight } from "../../style-utils/variables";
+import { colors as color, weights as weight } from "../../utils/variables";
 
 const StyledAuthForm = styled.form`
   background-color: ${color.semidarkblue};

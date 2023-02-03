@@ -3,7 +3,7 @@ import {
   breakpoints as breakpoint,
   colors as color,
   weights as weight,
-} from "../../style-utils/variables";
+} from "../../utils/variables";
 
 import movieCategoryIcon from "../../assets/icon-category-movie.svg";
 import tvseriesCategoryIcon from "../../assets/icon-category-tv.svg";

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {
   weights as weight,
   breakpoints as breakpoint,
-} from "../../style-utils/variables";
+} from "../../utils/variables";
 
 const StyledHomeView = styled.section`
   width: 100%;

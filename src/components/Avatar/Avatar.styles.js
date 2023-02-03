@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { colors as color } from "../../style-utils/variables";
+import { colors as color } from "../../utils/variables";
 import avatar from "../../assets/avatar.svg";
 import {
   breakpoints as breakpoint,
   weights as weight,
-} from "../../style-utils/variables";
+} from "../../utils/variables";
 
 const StyledAvatar = styled.button`
   width: 30px;

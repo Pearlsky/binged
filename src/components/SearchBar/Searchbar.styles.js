@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {
   colors as color,
   weights as weight
-} from "../../style-utils/variables";
+} from "../../utils/variables";
 
 const StyledSearchbar = styled.article`
   label {

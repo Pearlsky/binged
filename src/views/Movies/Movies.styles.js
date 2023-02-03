@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { breakpoints as breakpoint } from "../../style-utils/variables";
+import { breakpoints as breakpoint } from "../../utils/variables";
 
 const StyledMoviesView = styled.section`
   width: 100%;
