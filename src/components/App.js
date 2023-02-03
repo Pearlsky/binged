@@ -2,14 +2,14 @@ import { Routes, Route } from "react-router-dom";
 import { useState, useContext } from "react";
 import { AuthContext } from "../services/firebase/auth";
 
-import GlobalStyles from "../style-utils/Global.styles";
+import GlobalStyles from "../utils/Global.styles";
 import { StyledAppContainer } from "./App.styles";
 import * as ROUTES from "../constants/routes";
 
 import Alert from "./Alert/Alert";
 import AuthPage from "../views/AuthPage/AuthPage";
 import Home from "../views/Home/Home";
-import ProtectedRoute from "../style-utils/ProtectedRoute";
+import ProtectedRoute from "../utils/ProtectedRoute";
 
 import NavBar from "./NavBar/NavBar";
 import Movies from "../views/Movies/Movies";
