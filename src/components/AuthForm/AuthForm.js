@@ -5,9 +5,13 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signInWithPopup,
+  setPersistence,
+  browserSessionPersistence,
 } from "firebase/auth";
 import { GProvider } from "../../services/firebase/auth";
 import * as ROUTES from "../../constants/routes";
+import { AuthContext } from "../../services/firebase/auth";
+import { errorStringify } from "../../utils/utilfns";
 
 import {
   IconTextButton,
@@ -16,11 +20,11 @@ import {
 } from "../Button/Button";
 import TextField from "../TextField/TextField";
 import StyledAuthForm from "./AuthForm.styles";
-
 import googleIcon from "../../assets/Google.svg";
-import { AuthContext } from "../../services/firebase/auth";
 
 const AuthForm = ({ heading, setStatus, setErrMessage }) => {
+  // State:
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
@@ -30,18 +34,37 @@ const AuthForm = ({ heading, setStatus, setErrMessage }) => {
   const [passIsVisible, setPassIsVisible] = useState(false);
   const [authLoading, setAuthLoading] = useState(false);
 
+  // Context & Router Values:
+
   const navigate = useNavigate();
   const { auth } = useContext(AuthContext);
 
+  // Derived State:
+
+  // boolean: if all or any of the signup fields is empty or not
   const isSignUpValid =
     email !== "" &&
     password !== "" &&
     repeatPassword !== "" &&
     repeatPassword === password;
+
+  // boolean: if all or any of the login fields is empty or not
   const isLoginValid = email !== "" && password !== "";
 
-  const errorStringify = (string) => string.slice(22, -2).replaceAll("-", " ");
+  // Helper Functions / Handlers:
 
+  // set firebase auth persistence to match session storage persistence
+  setPersistence(auth, browserSessionPersistence)
+    .then(() => {
+      // New sign-in will be persisted with session persistence.
+      return signInWithEmailAndPassword(auth, email, password);
+    })
+    .catch((error) => {
+      // Handle Errors here.
+      console.log(`${error.code}: ${error.message}`);
+    });
+
+  // signup/login with password and email on auth form submit
   const submitHandler = async (e) => {
     setStatus("");
 
@@ -74,6 +97,7 @@ const AuthForm = ({ heading, setStatus, setErrMessage }) => {
     }
   };
 
+  // auth w google social authentication
   const signInWGoogleHandler = async (e) => {
     setStatus("");
 
@@ -86,6 +110,7 @@ const AuthForm = ({ heading, setStatus, setErrMessage }) => {
     }
   };
 
+  // UI:
   return (
     <StyledAuthForm onSubmit={submitHandler}>
       <h1>{heading}</h1>
