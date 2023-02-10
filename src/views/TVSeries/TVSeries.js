@@ -1,4 +1,4 @@
-import { get, ref } from "firebase/database";
+import { get, ref, set } from "firebase/database";
 import { useContext, useEffect, useState } from "react";
 import Searchbar from "../../components/SearchBar/Searchbar";
 import { AuthContext } from "../../services/firebase/auth";
@@ -8,6 +8,8 @@ import StyledTVSeriesView from "./TVSeries.styles";
 
 const TVSeries = () => {
   const [tvSeriesListings, setTVSeriesListings] = useState();
+  const [searchListings, setSearchListings] = useState([]);
+  const [searchTerm, setSearchTerm] = useState();
   const db = useContext(DbContext);
   const { user } = useContext(AuthContext);
 
@@ -20,10 +22,30 @@ const TVSeries = () => {
       setTVSeriesListings(userListings);
     });
   }, [db, user?.uid]);
+
+  useEffect(() => {
+    if (searchTerm) {
+      const searchResult = tvSeriesListings.filter((item) => {
+        return (
+          item.title.toLowerCase().includes(searchTerm) ||
+          item.title.toUpperCase().includes(searchTerm)
+        );
+      });
+      setSearchListings(searchResult);
+    } else {
+      setSearchListings();
+    }
+  }, [searchTerm]);
+
   return (
     <StyledTVSeriesView role="region" aria-label="TV Series tab content">
-      <Searchbar keyword="TV series" />
-      <RegularSection heading="TV Series" listings={tvSeriesListings} />
+      <Searchbar keyword="TV series" setSearchTerm={setSearchTerm} />
+      <RegularSection
+        heading="TV Series"
+        listings={tvSeriesListings}
+        searchListings={searchListings}
+        searchTerm={searchTerm}
+      />
     </StyledTVSeriesView>
   );
 };
