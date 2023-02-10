@@ -11,6 +11,8 @@ import StyledHomeView, {
 
 const Home = () => {
   const [listings, setListings] = useState();
+  const [searchListings, setSearchListings] = useState([]);
+  const [searchTerm, setSearchTerm] = useState();
   const db = useContext(DbContext);
   const { user } = useContext(AuthContext);
 
@@ -24,30 +26,71 @@ const Home = () => {
       setListings(userListings);
     });
   }, [db, user?.uid]);
+
+  useEffect(() => {
+    if (searchTerm) {
+      const searchResult = listings.filter((item) => {
+        return (
+          item.title.toLowerCase().includes(searchTerm) ||
+          item.title.toUpperCase().includes(searchTerm)
+        );
+      });
+      setSearchListings(searchResult);
+    } else {
+      setSearchListings();
+    }
+  }, [searchTerm]);
+
   return (
     <StyledHomeView role="region" aria-label="Home Tab Content">
-      <Searchbar keyword="movies or TV series" />
-      <RegularSection heading="Recommended for you" listings={listings} />
+      <Searchbar keyword="movies or TV series" setSearchTerm={setSearchTerm} />
+      <RegularSection
+        heading="Recommended for you"
+        listings={listings}
+        searchListings={searchListings}
+        searchTerm={searchTerm}
+      />
     </StyledHomeView>
   );
 };
 
-export const RegularSection = ({ heading, listings }) => {
+export const RegularSection = ({
+  heading,
+  listings,
+  searchListings,
+  searchTerm,
+}) => {
   return (
     <StyledRegularSection>
-      <h2>{heading}</h2>
-      <StyledListingGrid listing={listings}>
-        {listings &&
-          listings.map((item) => (
-            <MovieListing
-              key={`${item.title}-${item.year}`}
-              title={item.title}
-              category={item.category}
-              rating={item.rating}
-              year={item.year}
-              thumbnail={item.thumbnail.regular}
-            />
-          ))}
+      {searchListings ? (
+        <h2>
+          Found {searchListings.length} results for "{searchTerm}"
+        </h2>
+      ) : (
+        <h2>{heading}</h2>
+      )}
+      <StyledListingGrid>
+        {searchListings
+          ? searchListings.map((item) => (
+              <MovieListing
+                key={`${item.title}-${item.year}`}
+                title={item.title}
+                category={item.category}
+                rating={item.rating}
+                year={item.year}
+                thumbnail={item.thumbnail.regular}
+              />
+            ))
+          : listings?.map((item) => (
+              <MovieListing
+                key={`${item.title}-${item.year}`}
+                title={item.title}
+                category={item.category}
+                rating={item.rating}
+                year={item.year}
+                thumbnail={item.thumbnail.regular}
+              />
+            ))}
       </StyledListingGrid>
     </StyledRegularSection>
   );
