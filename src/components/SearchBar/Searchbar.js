@@ -1,6 +1,10 @@
 import StyledSearchbar from "./Searchbar.styles";
 
-const Searchbar = ({ keyword }) => {
+const Searchbar = ({ setSearchTerm, keyword }) => {
+  const searchInputHandler = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
   return (
     <StyledSearchbar>
       <label htmlFor="searchInput">
@@ -10,7 +14,11 @@ const Searchbar = ({ keyword }) => {
             fill="#FFF"
           />
         </svg>
-        <input id="searchInput" placeholder={`Search for ${keyword}`} />
+        <input
+          id="searchInput"
+          placeholder={`Search for ${keyword}`}
+          onChange={searchInputHandler}
+        />
       </label>
     </StyledSearchbar>
   );
