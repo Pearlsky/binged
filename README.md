@@ -18,10 +18,10 @@ As you might notice, not all the feature ideas for this project have been comple
 - [x] See hover states for all interactive elements on the page
 - [x] Authenticate (login/sign up) as a user w Google social login
 - [x] Sign out an authenticated user
+- [x] Search for relevant shows on all pages
 - [ ] Reset lost password
 - [ ] View and update profile
 - [ ] Add/remove bookmarks from all movies and TV series
-- [ ] Search for relevant shows on all pages
 - [ ] Play, stream or watch a listed show
 
 ### Running this project locally
