@@ -8,6 +8,8 @@ import StyledMoviesView from "./Movies.styles";
 
 const Movies = () => {
   const [moviesListings, setMoviesListings] = useState();
+  const [searchListings, setSearchListings] = useState([]);
+  const [searchTerm, setSearchTerm] = useState();
   const db = useContext(DbContext);
   const { user } = useContext(AuthContext);
 
@@ -21,10 +23,30 @@ const Movies = () => {
       setMoviesListings(userListings);
     });
   }, [db, user?.uid]);
+
+  useEffect(() => {
+    if (searchTerm) {
+      const searchResult = moviesListings.filter((item) => {
+        return (
+          item.title.toLowerCase().includes(searchTerm) ||
+          item.title.toUpperCase().includes(searchTerm)
+        );
+      });
+      setSearchListings(searchResult);
+    } else {
+      setSearchListings();
+    }
+  }, [searchTerm]);
+
   return (
     <StyledMoviesView role="region" aria-label="Movies tab content">
-      <Searchbar keyword="movies" />
-      <RegularSection heading="Movies" listings={moviesListings} />
+      <Searchbar keyword="movies" setSearchTerm={setSearchTerm} />
+      <RegularSection
+        heading="Movies"
+        listings={moviesListings}
+        searchListings={searchListings}
+        searchTerm={searchTerm}
+      />
     </StyledMoviesView>
   );
 };
