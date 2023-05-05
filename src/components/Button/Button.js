@@ -54,7 +54,7 @@ export const IconTextBtnOutlined = ({ text = "", icon, type = "", onClick }) => 
 export const BookmarkButton = () => {
   const [isBookmarked, setIsBookmarked] = useState(false);
   const bookmarkHandler = () => {
-    setIsBookmarked(!isBookmarked);
+    setIsBookmarked(() => !isBookmarked);
   };
 
   return (

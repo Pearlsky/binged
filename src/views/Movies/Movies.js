@@ -36,7 +36,7 @@ const Movies = () => {
     } else {
       setSearchListings();
     }
-  }, [searchTerm]);
+  }, [searchTerm, moviesListings]);
 
   return (
     <StyledMoviesView role="region" aria-label="Movies tab content">

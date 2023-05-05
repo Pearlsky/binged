@@ -107,8 +107,7 @@ export const StyledMovieSubDetails = styled.div`
 
     > span {
       background: no-repeat
-        url(${({ category }) =>
-          category === "Movie" ? movieCategoryIcon : tvseriesCategoryIcon});
+        url(${({ category }) => category === "Movie" ? movieCategoryIcon : tvseriesCategoryIcon});
       display: block;
       height: 1em;
       width: 1em;

@@ -1,4 +1,4 @@
-import { get, ref, set } from "firebase/database";
+import { get, ref } from "firebase/database";
 import { useContext, useEffect, useState } from "react";
 import Searchbar from "../../components/SearchBar/Searchbar";
 import { AuthContext } from "../../services/firebase/auth";
@@ -35,7 +35,7 @@ const TVSeries = () => {
     } else {
       setSearchListings();
     }
-  }, [searchTerm]);
+  }, [searchTerm, tvSeriesListings]);
 
   return (
     <StyledTVSeriesView role="region" aria-label="TV Series tab content">

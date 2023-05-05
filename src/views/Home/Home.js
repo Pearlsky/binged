@@ -39,7 +39,7 @@ const Home = () => {
     } else {
       setSearchListings();
     }
-  }, [searchTerm]);
+  }, [searchTerm, listings]);
 
   return (
     <StyledHomeView role="region" aria-label="Home Tab Content">
